@@ -1,19 +1,22 @@
 import random
 
 class Account():
-    def __init__(self, firstName: str, lastName: str, phoneNumber: str, username: str, password: str):
+    
+    def __init__(self, firstName: str, lastName: str, phoneNumber: str, username: str, password: str, category: str):
         self.firstName = firstName
         self.lastName = lastName
         self.phoneNumber = phoneNumber
         self.password = password
         self.username = username
+        self.category = category
         self.idNum = str(random.randint(100001,999999))
-        self.saveData(self.firstName, self.lastName, self.phoneNumber, self.username, self.password, self.idNum)
+        print(self.idNum)
+        # self.saveAccount(self.firstName, self.lastName, self.phoneNumber, self.username, self.password, self.idNum, self.category)
 
-    def saveData(self, firstName, lastName, phoneNumber, username, password, idNum):
-        outfile = open('AccDB', 'w')
-        outfile.write(f'{firstName} | {lastName} | {phoneNumber} | {username} | {password} | {id} \n')
-        outfile.close()
+    def saveAccount(self, firstName, lastName, phoneNumber, username, password, idNum, category):
+        with open('Database/Account/AccDB','a') as outfile:
+            outfile.write('\n')
+            outfile.write(f'{firstName} | {lastName} | {phoneNumber} | {username} | {password} | {idNum} | {category} | N/A')
 
 class Patient(Account):
     def __init__(self, firstName: str, lastName: str, phoneNumber: str, username: str,password: str):

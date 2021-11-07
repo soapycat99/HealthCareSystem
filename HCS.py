@@ -3,5 +3,15 @@ import Database.DBControl as DB
 def verifyInfo(acc,pw):
     return DB.checkInfo(acc,pw)
 
-def signUp(firstName, lastName, phoneNumber, username, password):
-    DB.signUp(firstName, lastName, phoneNumber, username, password)
+def signUp(firstName, lastName, phoneNumber, username, password, category):
+    DB.signUp(firstName, lastName, phoneNumber, username, password, category)
+
+def makeAppointment(firstName, lastName, phoneNumber, doctor):
+    DB.makeAppointment(firstName, lastName, phoneNumber, doctor)
+
+def checkAppointment(lastName, phoneNumber):
+    return DB.checkAppointment(lastName, phoneNumber)
+
+def cancelAppointment(appID):
+    DB.cancelAppointment(appID)
+

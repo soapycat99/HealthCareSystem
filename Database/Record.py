@@ -1,5 +1,5 @@
 class Record():
-    def __init__(self, firstName: str, lastName: str, address:str, phoneNumber: str, email: str, ssn: str, insuranceName: str)
+    def __init__(self, firstName: str, lastName: str, address:str, phoneNumber: str, email: str, ssn: str, insuranceName: str):
         self.firstName = firstName
         self.lastName = lastName
         self.address = address

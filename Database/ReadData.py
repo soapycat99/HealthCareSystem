@@ -1,5 +1,6 @@
 # import Account.Account as ac
 #3,4
+import os
 def readInfo(acc, pw):
     with open('Database/Account/AccDB', 'r') as outfile:
         next(outfile)
@@ -23,3 +24,51 @@ def readAppointment(lastName, phoneNumber):
                     return info
 
         return None
+
+def readRecord(fn,ln,recid):
+    dir = '/Users/soapycat/PycharmProjects/HealthCareSystem/Database/RecDir'
+    info = []
+    if recid != None:
+        try:
+            with open(f'Database/RecDir/{recid}.txt','r') as f:
+                try:
+                    for line in f:
+                        if len(line.split(':'))>1:
+                            info.append(line.split(':')[1].strip())
+                except Exception as ex:
+                    template = "An exception of type {0} occurred. Arguments:\n{1!r}"
+                    message = template.format(type(ex).__name__, ex.args)
+                    print('loi o day ne')
+                    print(message)
+            return info
+
+        except Exception as ex:
+            template = "An exception of type {0} occurred. Arguments:\n{1!r}"
+            message = template.format(type(ex).__name__, ex.args)
+            print('loi o day ne')
+            print(message)
+            return None
+
+
+    else:
+        for filename in os.listdir(dir):
+            try:
+                with open(f'Database/RecDir/{filename}', 'r') as f:
+                    firstName = f.readline().split(':')[1].strip()
+                    lastName = f.readline().split(':')[1].strip()
+                    if fn == firstName and ln == lastName:
+                        info.append(firstName)
+                        info.append(lastName)
+                        try:
+                            for line in f:
+                                if len(line.split(':'))>1:
+                                    info.append(line.split(':')[1].strip())
+                        except Exception as ex:
+                            template = "An exception of type {0} occurred. Arguments:\n{1!r}"
+                            message = template.format(type(ex).__name__, ex.args)
+                            print(message)
+                return info
+
+            except:
+                print('Failling check ln and fn')
+

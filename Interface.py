@@ -58,8 +58,12 @@ def createRecord():
     record.append(input('SSN: '))
     record.append(input('Insurance Name: '))
     HCS.createRecord(record)
-def checkRecord():
-    pass
+
+def checkRecord(fn=None, ln=None, recid=None):
+    info = HCS.checkRecord(fn,ln,recid)
+    key = ['First Name', 'Last Name', 'Address', 'Phone', 'Email', 'SSN','Insurance Name', 'RecID']
+    for k, i in zip(key,info):
+        print(f'{k} : {i}')
 
 def main():
     # info = signUp()
@@ -74,7 +78,8 @@ def main():
     # checkAppointment()
     # cancelAppointment((appID))
 
-    createRecord()
-
+    # createRecord()
+    # checkRecord(fn='Triet',ln='Le')
+    checkRecord(recid='R2966')
 if __name__ == "__main__":
     main()

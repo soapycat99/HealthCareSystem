@@ -13,7 +13,7 @@ def createAppointment(firstName, lastName, phoneNumber, doctor):
 def createRecord(record):
     recID = random.randint(1000,9999)
     recID = 'R' + str(recID)
-    with open(f'Database/RecDir/{recID}.txt','w') as f:
+    with open(f'Database/RecDir/{recID}.txt','x') as f:
         f.write(f'First Name: {record.pop(0)}\n')
         f.write(f'Last Name: {record.pop(0)}\n')
         f.write(f'Address: {record.pop(0)}\n')
@@ -21,5 +21,6 @@ def createRecord(record):
         f.write(f'Email: {record.pop(0)}\n')
         f.write(f'SSN: {record.pop(0)}\n')
         f.write(f'Insurance Name: {record.pop(0)}\n')
+        f.write(f'Record ID: {recID}\n')
         f.write('------------------------------\n')
 

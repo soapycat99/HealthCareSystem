@@ -18,3 +18,6 @@ def cancelAppointment(appID):
 def createRecord(record):
     DB.createRecord(record)
 
+def checkRecord(fn,ln,recid):
+    return DB.checkRecord(fn,ln,recid)
+

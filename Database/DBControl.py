@@ -20,3 +20,7 @@ def cancelAppointment(appID):
 def createRecord(record):
     cd.createRecord(record)
 
+def checkRecord(fn,ln,recid):
+    return rd.readRecord(fn,ln,recid)
+
+

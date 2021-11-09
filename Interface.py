@@ -42,6 +42,25 @@ def checkAppointment():
 def cancelAppointment(appID):
     HCS.cancelAppointment(appID)
 
+def updateAppointment():
+    pass
+
+def cardPayment():
+    pass
+
+def createRecord():
+    record = []
+    record.append(input('First Name: '))
+    record.append(input('Last Name: '))
+    record.append(input('Address: '))
+    record.append(input('Phone Number: '))
+    record.append(input('Email: '))
+    record.append(input('SSN: '))
+    record.append(input('Insurance Name: '))
+    HCS.createRecord(record)
+def checkRecord():
+    pass
+
 def main():
     # info = signUp()
     # for i in info:
@@ -50,11 +69,12 @@ def main():
     # username, password = enterInfo()
     # verifyInfo(username, password)
 
-    makeAppointment()
+    # makeAppointment()
 
     # checkAppointment()
     # cancelAppointment((appID))
 
+    createRecord()
 
 if __name__ == "__main__":
     main()

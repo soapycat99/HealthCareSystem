@@ -17,3 +17,6 @@ def checkAppointment(lastName, phoneNumber):
 def cancelAppointment(appID):
     dd.deleteApp(appID)
 
+def createRecord(record):
+    cd.createRecord(record)
+

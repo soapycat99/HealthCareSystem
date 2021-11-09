@@ -15,3 +15,6 @@ def checkAppointment(lastName, phoneNumber):
 def cancelAppointment(appID):
     DB.cancelAppointment(appID)
 
+def createRecord(record):
+    DB.createRecord(record)
+

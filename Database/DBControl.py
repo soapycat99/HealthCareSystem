@@ -1,8 +1,9 @@
 from Database import ReadData as rd
 from Database import CreateData as cd
 from Database import DeleteData as dd
+from Database import UpdateData as ud
 
-def checkInfo(acc, pw):
+def verifyInfo(acc, pw):
     return rd.readInfo(acc, pw)
 
 def signUp(firstName, lastName, phoneNumber, username, password, category):
@@ -25,3 +26,6 @@ def checkRecord(fn,ln,recid):
 
 def checkInvoice(accID):
     return rd.readInvoice(accID)
+
+def updateGeneralRecord(opt,data,recID):
+    ud.updateGeneralRecord(opt,data,recID)

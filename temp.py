@@ -70,7 +70,7 @@ def createRecord():
     record.append(input('Insurance Name: '))
     DB.createRecord(record)
 
-def checkRecord(fn, ln, recid):
+def checkRecord(fn=None, ln=None, recid=None):
     info = DB.checkRecord(fn,ln,recid)
     key = ['First Name', 'Last Name', 'Address', 'Phone', 'Email', 'SSN','Insurance Name', 'RecID']
     for k, i in zip(key,info):
@@ -89,16 +89,14 @@ def checkInvoice(accID):
 def readPayment():
     pass
 
-def updateGeneralRecord(recID):
+def updateGeneralRecord():
     category = ['First Name', 'Last Name', 'Address', 'Phone Number','Email','SSN','Insurance Name']
     print('Choose category to be updated:')
     opt = 0
-    data = ''
     for count, value in enumerate(category,1):
-        print(f'{count}. {value}')
+        print(f'{count}: {value}')
     while True:
         opt = int(input('Input: '))
         if opt>=1 and opt<=len(category):
-            data = input(f'Update {category[opt-1]}: ')
             break
-    DB.updateGeneralRecord(opt-1,data,recID)
+    DB.updateGeneralRecord(opt)

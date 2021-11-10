@@ -1,2 +1,2 @@
-FirstName | LastName | PhoneNumber | Doctor | AppID
-Triet | Le | 3344921099 | Quan Huynh | 714620
+FirstName | LastName | PhoneNumber | Doctor | AppID | Date | Time
+Triet | Le | 3344921099 | Quan Huynh | 714620 | 11/7/21 | 1:30 PM

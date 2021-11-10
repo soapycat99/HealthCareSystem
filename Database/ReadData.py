@@ -1,6 +1,8 @@
 # import Account.Account as ac
 #3,4
 import os
+import csv
+
 def readInfo(acc, pw):
     with open('Database/Account/AccDB', 'r') as outfile:
         next(outfile)
@@ -15,14 +17,13 @@ def readInfo(acc, pw):
     return False
 
 def readAppointment(lastName, phoneNumber):
-    with open('Database/AppDB', 'r') as outfile:
-        next(outfile)
-        for line in outfile:
-            info = [x.strip() for x in line.split('|')]
-            if lastName == info[1]:
-                if phoneNumber == info[2]:
-                    return info
-
+    with open('Database/AppDB.csv', 'r') as f:
+        csvreader = csv.reader(f)
+        next(csvreader)
+        for line in csvreader:
+            if lastName == line[2]:
+                if phoneNumber == line[3]:
+                    return line
         return None
 
 def readRecord(fn,ln,recid):
@@ -72,3 +73,14 @@ def readRecord(fn,ln,recid):
             except:
                 print('Failling check ln and fn')
 
+def readInvoice(accID):
+    invList = []
+    with open('Database/Invoice', 'r') as outfile:
+        next(outfile)
+        for line in outfile:
+            info = [x.strip() for x in line.split('|')]
+            if accID == info[0]:
+                invList.append(info)
+    if len(invList)>0:
+        return invList
+    return None

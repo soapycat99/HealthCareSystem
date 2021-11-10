@@ -1,8 +1,9 @@
-def deleteApp(appID):
-    with open('Database/AppDB', 'r') as outline:
-        lines = outline.readlines()
+import csv
 
-    with open('Database/AppDB', 'w') as outline:
-        for line in lines:
-            # if [x.strip() for x in line.split('|')][4] != appID:
-             outline.write(line)
+def deleteApp(appID):
+    with open('Database/AppDB.csv', 'r') as out, open('Database/App.csv','w') as inp:
+        csvwriter = csv.writer(inp)
+        for row in csv.reader(out):
+            if row[0] != appID:
+                csvwriter.writerow(row)
+

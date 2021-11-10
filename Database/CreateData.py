@@ -1,14 +1,21 @@
 from Database.Account import Account as ac
-from Database import Appointment as app
 import random
+import csv
 
 def createAccount(firstName, lastName, phoneNumber, username, password, category):
     Acc = ac.Account(firstName,lastName,phoneNumber,username,password, category)
     Acc.saveAccount(firstName,lastName,phoneNumber,username,password, Acc.idNum, category)
 
-def createAppointment(firstName, lastName, phoneNumber, doctor):
-    App = app.Appointment(firstName, lastName, phoneNumber, doctor)
-    App.saveApp(firstName,lastName, phoneNumber, doctor, App.appID)
+
+def createAppointment(info):
+    appID = str(random.randint(100001, 999999))
+    info.insert(0,appID)
+
+    with open('Database/AppDB.csv','a', newline='') as f:
+        writer = csv.writer(f)
+        writer.writerow(info)
+
+
 
 def createRecord(record):
     recID = random.randint(1000,9999)

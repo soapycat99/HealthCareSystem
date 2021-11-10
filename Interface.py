@@ -22,22 +22,29 @@ def signUp():
     return [firstName, lastName, phoneNumber, username, password, category]
 
 def makeAppointment():
-    firstName = input('First name: ')
-    lastName = input('Last name: ')
-    phoneNumber = input('Phone number: ')
-    doctor = input('Doctor: ')
-    HCS.makeAppointment(firstName, lastName, phoneNumber, doctor)
+    info = []
+    info.append(input('First name: '))
+    info.append(input('Last name: '))
+    info.append(input('Phone number: '))
+    info.append(input('Doctor: '))
+    info.append(input('Date: '))
+    info.append(input('Time: '))
+    HCS.makeAppointment(info)
 
 def checkAppointment():
     lastName = input('Last name: ')
     phoneNumber = input('Phone number: ')
     info = HCS.checkAppointment(lastName, phoneNumber)
     if info != None:
-        print(f'Appoinment ID: {info[4]}')
-        print(f'Doctor: {info[3]}')
+        key = ['AppID', 'First Name', 'Last Name', 'Phone Number', 'Doctor', 'Date','Time']
+        for k,i in zip(key,info):
+            print(f'{k}: {i}')
+        print('----------------')
+        print('1/ Update Appointment')
+        print('2/ Cancel Appointment')
+
     else:
-        print('Not available')
-    # return info[4]
+        print('wtf why doesnt it work')
 
 def cancelAppointment(appID):
     HCS.cancelAppointment(appID)
@@ -46,7 +53,9 @@ def updateAppointment():
     pass
 
 def cardPayment():
-    pass
+    print('Card number: 123456789')
+    print('PIN: 123')
+    #Lam chua xong
 
 def createRecord():
     record = []
@@ -65,6 +74,31 @@ def checkRecord(fn=None, ln=None, recid=None):
     for k, i in zip(key,info):
         print(f'{k} : {i}')
 
+def checkInvoice(accID):
+    invList = HCS.checkInvoice(accID)
+    if invList != None:
+        key = ['Invoice Number', 'Amount', 'Description']
+
+    for info in invList:
+        for k, i in zip(key,info):
+            print(f'{k}: {i}')
+        print('----------------')
+
+def readPayment():
+    pass
+
+def updateGeneralRecord():
+    category = ['First Name', 'Last Name', 'Address', 'Phone Number','Email','SSN','Insurance Name']
+    print('Choose category to be updated:')
+    opt = 0
+    for count, value in enumerate(category,1):
+        print(f'{count}: {value}')
+    while True:
+        opt = int(input('Input: '))
+        if opt>=1 and opt<=len(category):
+            break
+    HCS.updateGeneralRecord(opt)
+
 def main():
     # info = signUp()
     # for i in info:
@@ -75,11 +109,13 @@ def main():
 
     # makeAppointment()
 
-    # checkAppointment()
+    checkAppointment()
     # cancelAppointment((appID))
 
     # createRecord()
     # checkRecord(fn='Triet',ln='Le')
-    checkRecord(recid='R2966')
+    # checkRecord(recid='R2966')
+    # checkInvoice('792895')
+
 if __name__ == "__main__":
     main()

@@ -8,8 +8,8 @@ def checkInfo(acc, pw):
 def signUp(firstName, lastName, phoneNumber, username, password, category):
     cd.createAccount(firstName, lastName, phoneNumber, username, password, category)
 
-def makeAppointment(firstName, lastName, phoneNumber, doctor):
-    cd.createAppointment(firstName, lastName, phoneNumber, doctor)
+def makeAppointment(info):
+    cd.createAppointment(info)
 
 def checkAppointment(lastName, phoneNumber):
     return rd.readAppointment(lastName, phoneNumber)
@@ -23,4 +23,5 @@ def createRecord(record):
 def checkRecord(fn,ln,recid):
     return rd.readRecord(fn,ln,recid)
 
-
+def checkInvoice(accID):
+    return rd.readInvoice(accID)

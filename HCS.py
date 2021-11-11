@@ -33,9 +33,12 @@ def makeAppointment():
     info.append(input('Time: '))
     DB.makeAppointment(info)
 
-def checkAppointment():
-    lastName = input('Last name: ')
-    phoneNumber = input('Phone number: ')
+
+def checkAppointment(lastName = None, phoneNumber = None):
+    if lastName == None:
+        lastName = input('Last name: ')
+        phoneNumber = input('Phone number: ')
+
     info = DB.checkAppointment(lastName, phoneNumber)
     if info != None:
         key = ['AppID', 'First Name', 'Last Name', 'Phone Number', 'Doctor', 'Date','Time']
@@ -44,15 +47,37 @@ def checkAppointment():
         print('----------------')
         print('1/ Update Appointment')
         print('2/ Cancel Appointment')
-
+        print('3/ X')
+        print(f'AppID = {info[0]} and type {type(info[0])}')
+        opt = input('Enter: ')
+        if int(opt) == 1:
+            updateAppointment(info[0])
+        elif int(opt) ==2:
+            cancelAppointment(info[0])
+        else:
+            pass
     else:
-        print('wtf why doesnt it work')
+        print('wtf why doesnt it work, try again')
+        checkAppointment()
 
 def cancelAppointment(appID):
     DB.cancelAppointment(appID)
+    print('Appointment cancelled successfully!')
 
-def updateAppointment():
-    pass
+def updateAppointment(appID):
+    category = ['First Name','Last Name', 'Phone Number', 'Doctor','Date','Time']
+    opt = 0
+    data = ''
+    for count, value in enumerate(category, 1):
+        print(f'{count}. {value}')
+    while True:
+        opt = int(input('Input: '))
+        if opt >= 1 and opt <= len(category):
+            data = input(f'Update {category[opt - 1]}: ')
+            break
+
+    lastName, phoneNumber = DB.updateAppointment(opt,data,appID)
+    # checkAppointment(lastName, phoneNumber)
 
 def cardPayment():
     print('Card number: 123456789')

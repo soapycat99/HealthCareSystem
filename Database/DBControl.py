@@ -15,6 +15,9 @@ def makeAppointment(info):
 def checkAppointment(lastName, phoneNumber):
     return rd.readAppointment(lastName, phoneNumber)
 
+def updateAppointment(opt,data,appID):
+    return ud.updateAppointment(opt,data,appID)
+
 def cancelAppointment(appID):
     dd.deleteApp(appID)
 

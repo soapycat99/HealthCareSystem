@@ -12,6 +12,9 @@ def makeAppointment():
 def checkAppointment():
     return HCS.checkAppointment()
 
+def updateAppointment(appID):
+    HCS.updateAppointment(appID)
+
 def cancelAppointment(appID):
     HCS.cancelAppointment(appID)
 
@@ -31,12 +34,12 @@ def main():
     # info = signUp()
     # for i in info:
     #     print(i)
-    HCS.updateGeneralRecord('R2966')
+    # HCS.updateGeneralRecord('R2966')
     # username, password = enterInfo()
     # verifyInfo(username, password)
 
     # makeAppointment()
-
+    # updateAppointment()
     # checkAppointment()
     # cancelAppointment((appID))
 
@@ -44,6 +47,7 @@ def main():
     # checkRecord(fn='Triet',ln='Le')
     # checkRecord(recid='R2966')
     # checkInvoice('792895')
+    updateGeneralRecord('R2966')
 
 if __name__ == "__main__":
     main()

@@ -77,7 +77,7 @@ def updateAppointment(appID):
             break
 
     lastName, phoneNumber = DB.updateAppointment(opt,data,appID)
-    # checkAppointment(lastName, phoneNumber)
+    checkAppointment(lastName, phoneNumber)
 
 def cardPayment():
     print('Card number: 123456789')

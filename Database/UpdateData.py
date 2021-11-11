@@ -20,19 +20,25 @@ def updateAppointment(opt,data,appID):
 
     lastName = ''
     phoneNumber =''
+    lines = list()
 
-    with open('Database/AppDB.csv', 'r') as out, open('Database/App.csv', 'w') as inp:
-        csvwriter = csv.writer(inp)
-        for row in csv.reader(out):
+    with open('Database/AppDB.csv', 'r') as out:
+        reader = csv.reader(out)
+        for row in reader:
             if row[0] != appID:
-                csvwriter.writerow(row)
+                lines.append(row)
             else:
                 row[opt] = data
                 print(f'update: {row[opt]}')
                 print(f'data: {data}')
                 print(row)
-                csvwriter.writerow(row)
+                lines.append(row)
                 lastName, phoneNumber = row[2],row[3]
+
+    with open('Database/AppDB.csv', 'w') as inp:
+        writer = csv.writer(inp)
+        writer.writerows(lines)
+
     print(lastName, phoneNumber)
     return lastName, phoneNumber
 

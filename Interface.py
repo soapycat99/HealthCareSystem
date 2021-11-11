@@ -40,14 +40,14 @@ def main():
 
     # makeAppointment()
     # updateAppointment()
-    # checkAppointment()
+    checkAppointment()
     # cancelAppointment((appID))
 
     # createRecord()
     # checkRecord(fn='Triet',ln='Le')
     # checkRecord(recid='R2966')
     # checkInvoice('792895')
-    updateGeneralRecord('R2966')
+    # updateGeneralRecord('R2966')
 
 if __name__ == "__main__":
     main()

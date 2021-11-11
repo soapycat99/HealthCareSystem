@@ -1,9 +1,15 @@
 import csv
 
 def deleteApp(appID):
-    with open('Database/AppDB.csv', 'r') as out, open('Database/App.csv','w') as inp:
-        csvwriter = csv.writer(inp)
-        for row in csv.reader(out):
-            if row[0] != appID:
-                csvwriter.writerow(row)
 
+    lines = list()
+
+    with open('Database/App.csv', 'r') as out:
+        reader = csv.reader(out)
+        for row in reader:
+            if row[0] != appID:
+                lines.append(row)
+
+    with open('Database/App.csv','w') as inp:
+        writer = csv.writer(inp)
+        writer.writerows(lines)

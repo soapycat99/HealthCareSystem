@@ -16,6 +16,17 @@ def updateGeneralRecord(opt, data, recID):
     #     message = template.format(type(ex).__name__, ex.args)
     #     print(message)
 
+def updateMeasurement(pos, data, recID):
+    with open(f'Database/RecDir/{recID}.txt', 'r') as out:
+        # try:
+        lines = out.readlines()
+        line = lines[pos].split(':')
+        lines[pos] = f'{line[0]}: {data}\n'
+        print(lines)
+
+    with open(f'Database/RecDir/{recID}.txt', 'w') as inp:
+        inp.writelines(lines)
+
 def updateAppointment(opt,data,appID):
 
     lastName = ''

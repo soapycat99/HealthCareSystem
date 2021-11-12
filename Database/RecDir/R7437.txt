@@ -1,0 +1,20 @@
+First Name: Nam
+Last Name: Dang
+Address: 501 Martin Luther King
+Phone Number: 652212942
+Email: namngu123@yahoo.com
+SSN: 87654321
+Insurance Name: Alfa
+Record ID: R7437
+------------------------------
+Weight: 65
+Height: N/A
+Blood Pressure: N/A
+Pulse: N/A
+------------------------------
+Radiology: N/A
+Pathology: N/A
+Allergy: Peanut
+Prescription: N/A
+Summary: N/A
+------------------------------

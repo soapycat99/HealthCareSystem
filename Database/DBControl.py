@@ -32,3 +32,6 @@ def checkInvoice(accID):
 
 def updateGeneralRecord(opt,data,recID):
     ud.updateGeneralRecord(opt,data,recID)
+
+def updateMeasurement(pos, data, recID):
+    ud.updateMeasurement(pos,data, recID)

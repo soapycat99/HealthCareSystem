@@ -33,7 +33,6 @@ def makeAppointment():
     info.append(input('Time: '))
     DB.makeAppointment(info)
 
-
 def checkAppointment(lastName = None, phoneNumber = None):
     if lastName == None:
         lastName = input('Last name: ')
@@ -95,11 +94,51 @@ def createRecord():
     record.append(input('Insurance Name: '))
     DB.createRecord(record)
 
-def checkRecord(fn, ln, recid):
+def checkRecord(fn = None, ln = None, recid = None):
     info = DB.checkRecord(fn,ln,recid)
-    key = ['First Name', 'Last Name', 'Address', 'Phone', 'Email', 'SSN','Insurance Name', 'RecID']
-    for k, i in zip(key,info):
-        print(f'{k} : {i}')
+    print(info)
+    info1 = info[:8]
+    print(info1)
+    info2 = info[8:-1]
+    summary = info[-1]
+    print(info2)
+
+    key1 = ['First Name', 'Last Name', 'Address', 'Phone', 'Email', 'SSN','Insurance Name', 'RecID']
+    key2 = ['Weight','Height','Blood Pressure','Pulse','Radiology','Pathology','Allergy','Prescription']
+
+    for k1,i1,k2,i2 in zip(key1,info1,key2,info2):
+        firstVal = f'{k1}: {i1}'
+        if k2 != 'Weight':
+            print(f'{firstVal:<45} {k2}: {i2:<25} ')
+        else:
+            print(f'{firstVal:<45} {k2}: {i2:<25} Summary: {summary}')
+
+    print('-'*75,'\n')
+
+
+    recID = info1[-1]
+    showRecordOption(recID)
+
+def showRecordOption(recID):
+    print('Select Option')
+    for count,key in enumerate(['Update General Record','Update Treatment','Update Measurement','X'],1):
+        print(f'{count}. {key}')
+    opt = 0
+    option = ['updateGeneralRecord','updateTreatment','updateMeasurement']
+
+    while True:
+        try:
+            opt = int(input('Input: '))
+            if opt >= 1 and opt <= 3:
+                globals()[option[opt-1]](recID)
+                break
+            elif opt == 4:
+                break
+            print('Invalid, try again')
+        except ValueError:
+            print('Invalid, try again')
+            continue
+
 
 def checkInvoice(accID):
     invList = DB.checkInvoice(accID)
@@ -115,6 +154,7 @@ def readPayment():
     pass
 
 def updateGeneralRecord(recID):
+    print('this is updating general record')
     category = ['First Name', 'Last Name', 'Address', 'Phone Number','Email','SSN','Insurance Name']
     print('Choose category to be updated:')
     opt = 0
@@ -122,8 +162,61 @@ def updateGeneralRecord(recID):
     for count, value in enumerate(category,1):
         print(f'{count}. {value}')
     while True:
-        opt = int(input('Input: '))
-        if opt>=1 and opt<=len(category):
-            data = input(f'Update {category[opt-1]}: ')
-            break
+        try:
+            opt = int(input('Input: '))
+            if opt>=1 and opt<=len(category):
+                data = input(f'Update {category[opt-1]}: ')
+                break
+            print('Invalid, try again')
+        except ValueError:
+            print('Invalid, try again')
+            continue
     DB.updateGeneralRecord(opt-1,data,recID)
+    checkRecord(recid=recID)
+
+def updateMeasurement(recID):
+    category = ['Weight','Height','Blood Pressure','Pulse']
+    print('Select a index needed to be updated: ')
+    for count, value in enumerate(category,1):
+        print(f'{count}. {value}')
+    opt = 0
+    data =''
+    while True:
+        try:
+            opt = int(input('Enter :'))
+            if opt>0 and opt <=len(category):
+                data = input(f'Update {category[opt-1]}: ')
+                break
+            print('Invalid, try again')
+
+        except ValueError:
+            print('Invalid, try again')
+            continue
+    pos = opt + 8  #line position
+
+    DB.updateMeasurement(pos, data, recID)
+    checkRecord(recid=recID)
+
+def updateTreatment(recID):
+    category = ['Radiology','Pathology','Allergy','Prescription','Summary']
+    print('Select an index needed to be updated: ')
+    for count, value in enumerate(category, 1):
+        print(f'{count}. {value}')
+    opt = 0
+    data = ''
+    while True:
+        try:
+            opt = int(input('Enter :'))
+            if opt > 0 and opt <= len(category):
+                data = input(f'Update {category[opt - 1]}: ')
+                break
+            print('Invalid, try again')
+
+        except ValueError:
+            print('Invalid, try again')
+            continue
+    pos = opt + 13  # line position
+
+    DB.updateMeasurement(pos, data, recID)
+    checkRecord(recid=recID)
+

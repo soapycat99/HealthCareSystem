@@ -80,7 +80,7 @@ def readInvoice(accID):
         for line in outfile:
             info = [x.strip() for x in line.split('|')]
             if accID == info[0]:
-                invList.append(info)
+                invList.append(info[1:])
     if len(invList)>0:
         return invList
     return None

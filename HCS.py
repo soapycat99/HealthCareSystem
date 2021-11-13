@@ -78,9 +78,11 @@ def updateAppointment(appID):
     lastName, phoneNumber = DB.updateAppointment(opt,data,appID)
     checkAppointment(lastName, phoneNumber)
 
-def cardPayment():
-    print('Card number: 123456789')
-    print('PIN: 123')
+def cardPayment(invNum):
+    # print('Card number: 123456789')
+    # print('PIN: 123')
+    print(f'Invoice: {invNum}')
+
     #Lam chua xong
 
 def createRecord():
@@ -142,13 +144,38 @@ def showRecordOption(recID):
 
 def checkInvoice(accID):
     invList = DB.checkInvoice(accID)
+    key = list()
     if invList != None:
         key = ['Invoice Number', 'Amount', 'Description']
+        for count, info in enumerate(invList,1):
+            print(f'{count}/',end='')
+            for k, i in zip(key,info):
+                print(f'{k:>20}: {i}')
+            print('----------------')
+        order = payingAlert(len(invList)+1)
+        if order != None:
+            invNum = invList[order][0]
+            cardPayment(invNum)
 
-    for info in invList:
-        for k, i in zip(key,info):
-            print(f'{k}: {i}')
-        print('----------------')
+
+
+def payingAlert(num):
+    opt = None
+    order = None
+
+    while opt not in ('Y','N'):
+        opt = input('Paying invoice(Y/N)?: ')
+        if opt not in ('Y','N'):
+            print('Please answer by typing Y or N')
+
+    if opt == 'Y':
+        while order not in range(1,num):
+            order = input('Choose invoice you would like to pay: ')
+            if int(order) not in range(num):
+                print(f'You must choose a number from 1 to {num-1}, try again')
+            else:
+                order = int(order)-1
+    return order
 
 def readPayment():
     pass

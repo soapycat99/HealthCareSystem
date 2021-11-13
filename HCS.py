@@ -1,4 +1,7 @@
 import Database.DBControl as DB
+import sys
+import time
+import ReceiptOutput.DispenserControl as RD
 
 def enterInfo():
     username = input('Enter ID: ')
@@ -78,12 +81,37 @@ def updateAppointment(appID):
     lastName, phoneNumber = DB.updateAppointment(opt,data,appID)
     checkAppointment(lastName, phoneNumber)
 
-def cardPayment(invNum):
+def cardPayment(receipt,accID):
     # print('Card number: 123456789')
     # print('PIN: 123')
+    invNum,amount,des = receipt
     print(f'Invoice: {invNum}')
+    input('Card number: ')
+    input('PIN: ')
+    timer = 0
+    loading = "Loading: [----------]"
+    backtrack = '\b' * len(loading)
 
-    #Lam chua xong
+    while timer < 5:
+        sys.stdout.write(backtrack + loading)
+        sys.stdout.flush()
+        loading = loading.replace("-", "=", 1)
+        time.sleep(0.5)
+        timer += 0.5
+
+    time.sleep(0.5)
+    sys.stdout.write(backtrack)
+    print(loading + " Payment Completed!")
+    content,current_time,today = RD.dispenseReceipt(amount,des)
+    print(content)
+
+    firstName,lastName = DB.getName(accID)
+    payInfo = [firstName,lastName,amount,today,current_time]
+
+    DB.storePayment(payInfo)
+
+    #Delete invoice
+
 
 def createRecord():
     record = []
@@ -154,8 +182,8 @@ def checkInvoice(accID):
             print('----------------')
         order = payingAlert(len(invList)+1)
         if order != None:
-            invNum = invList[order][0]
-            cardPayment(invNum)
+            receipt = tuple(invList[order])
+            cardPayment(receipt,accID)
 
 
 

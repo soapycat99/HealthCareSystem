@@ -35,3 +35,10 @@ def updateGeneralRecord(opt,data,recID):
 
 def updateMeasurement(pos, data, recID):
     ud.updateMeasurement(pos,data, recID)
+
+def getName(accID):
+    return rd.getName(accID)
+
+def storePayment(payInfo):
+    cd.storePayment(payInfo)
+

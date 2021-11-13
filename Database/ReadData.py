@@ -15,6 +15,14 @@ def readInfo(acc, pw):
                 else:
                     return False
     return False
+def getName(accID):
+    with open('Database/Account/AccDB', 'r') as outfile:
+        next(outfile)
+        for line in outfile:
+            info = [x.strip() for x in line.split('|')]
+            if accID == info[5]:
+                return info[0],info[1]
+    return None
 
 def readAppointment(lastName, phoneNumber):
     with open('Database/AppDB.csv', 'r') as f:

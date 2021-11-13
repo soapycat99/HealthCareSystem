@@ -164,7 +164,7 @@ def payingAlert(num):
     order = None
 
     while opt not in ('Y','N'):
-        opt = input('Paying invoice(Y/N)?: ')
+        opt = input('Paying invoice(Y/N)?: ').upper()
         if opt not in ('Y','N'):
             print('Please answer by typing Y or N')
 

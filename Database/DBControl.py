@@ -40,5 +40,5 @@ def getName(accID):
     return rd.getName(accID)
 
 def storePayment(payInfo):
-    cd.storePayment(payInfo)
+    cd.createPayment(payInfo)
 

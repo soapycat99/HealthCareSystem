@@ -6,7 +6,6 @@ def createAccount(firstName, lastName, phoneNumber, username, password, category
     Acc = ac.Account(firstName,lastName,phoneNumber,username,password, category)
     Acc.saveAccount(firstName,lastName,phoneNumber,username,password, Acc.idNum, category)
 
-
 def createAppointment(info):
     appID = str(random.randint(100001, 999999))
     info.insert(0,appID)
@@ -14,8 +13,6 @@ def createAppointment(info):
     with open('Database/AppDB.csv','a', newline='') as f:
         writer = csv.writer(f)
         writer.writerow(info)
-
-
 
 def createRecord(record):
     recID = random.randint(1000,9999)
@@ -49,4 +46,16 @@ def createRecord(record):
         # f.write(f'Insurance Name: {record.pop(0)}\n')
         # f.write(f'Record ID: {recID}\n')
 
+def createPayment(payInfo):
+    lineNum = 0
+    with open('Database/PaymentInfo.csv','r') as f:
+        reader = csv.reader(f)
+        lineNum = len(list(reader))
+
+    refNum = '000' + str(lineNum)
+    payInfo.insert(0,refNum)
+
+    with open('Database/PaymentInfo.csv','a', newline='\n') as f:
+        writer = csv.writer(f)
+        writer.writerow(payInfo)
 

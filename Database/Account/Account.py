@@ -1,8 +1,9 @@
 import random
+import Interface
 
-class Account():
+class Account(Interface):
     
-    def __init__(self, firstName: str, lastName: str, phoneNumber: str, username: str, password: str, category: str):
+    def __init__(self, firstName, lastName, phoneNumber, username, password, category):
         self.firstName = firstName
         self.lastName = lastName
         self.phoneNumber = phoneNumber
@@ -11,33 +12,32 @@ class Account():
         self.category = category
         self.idNum = str(random.randint(100001,999999))
         print(self.idNum)
-        # self.saveAccount(self.firstName, self.lastName, self.phoneNumber, self.username, self.password, self.idNum, self.category)
 
-    def saveAccount(self, firstName, lastName, phoneNumber, username, password, idNum, category):
+    def saveAccount(self):
         with open('Database/Account/AccDB','a') as outfile:
             outfile.write('\n')
-            outfile.write(f'{firstName} | {lastName} | {phoneNumber} | {username} | {password} | {idNum} | {category} | N/A')
+            outfile.write(f'{self.firstName} | {self.lastName} | {self.phoneNumber} | {self.username} | {self.password} | {self.idNum} | {self.category} | N/A')
 
 class Patient(Account):
-    def __init__(self, firstName: str, lastName: str, phoneNumber: str, username: str,password: str):
-        super.__init__(firstName, lastName, phoneNumber, username, password)
+    def __init__(self, firstName, lastName, phoneNumber, username,password, category):
+        Account.__init__(self,firstName, lastName, phoneNumber, username, password,category)
 
 class Staff(Account):
-    def __init__(self, firstName: str, lastName: str, phoneNumber: str, username: str, password: str, salary: float):
-        super.__init__(firstName, lastName, phoneNumber, username, password)
+    def __init__(self, firstName, lastName, phoneNumber, username, password, salary):
+        Account.__init__(self,firstName, lastName, phoneNumber, username, password)
         self.salary = salary
 
 class Doctor(Account):
-    def __init__(self, firstName: str, lastName: str, phoneNumber: str, username: str, password: str, salary: float):
-        super.__init__(firstName, lastName, phoneNumber, username, password)
+    def __init__(self, firstName, lastName, phoneNumber, username, password, salary):
+        Account.__init__(self,firstName, lastName, phoneNumber, username, password)
         self.salary = salary
 
 class Nurse(Account):
-    def __init__(self, firstName: str, lastName: str, phoneNumber: str, username: str, password: str, salary: float):
-        super.__init__(firstName, lastName, phoneNumber, username, password)
+    def __init__(self, firstName, lastName, phoneNumber, username, password, salary):
+        Account.__init__(self, firstName, lastName, phoneNumber, username, password)
         self.salary = salary
 
 class CEO(Account):
-    def __init__(self, firstName: str, lastName: str, phoneNumber: str,  username: str, password: str, salary: float):
-        super.__init__(firstName, lastName, phoneNumber, username, password)
+    def __init__(self, firstName, lastName, phoneNumber, username, password, salary):
+        Account.__init__(self, firstName, lastName, phoneNumber, username, password)
         self.salary = salary

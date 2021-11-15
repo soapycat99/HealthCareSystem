@@ -92,3 +92,24 @@ def readInvoice(accID):
     if len(invList)>0:
         return invList
     return None
+
+def readPayment(refNum,firstName,lastName):
+    if refNum == None:
+        with open('Database/PaymentInfo.csv', 'r') as f:
+            csvreader = csv.reader(f)
+            next(csvreader)
+            for line in csvreader:
+                if firstName == line[1]:
+                    if lastName == line[2]:
+                        return line
+            return None
+
+    else:
+        with open('Database/PaymentInfo.csv', 'r') as f:
+            csvreader = csv.reader(f)
+            next(csvreader)
+            for line in csvreader:
+                if refNum == line[0]:
+                    print(line)
+                    return line
+            return None

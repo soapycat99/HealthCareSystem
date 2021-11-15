@@ -42,3 +42,6 @@ def getName(accID):
 def storePayment(payInfo):
     cd.createPayment(payInfo)
 
+def readPayment(refNum=None,firstName=None,lastName=None):
+    info =  rd.readPayment(refNum,firstName,lastName)
+    return info

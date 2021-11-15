@@ -40,6 +40,9 @@ def updateMeasurement(recID):
 def showRecordOption():
     HCS.showRecordOption('R2966')
 
+def readPayment():
+    HCS.readPayment()
+
 def main():
     # info = signUp()
     # for i in info:
@@ -57,9 +60,9 @@ def main():
     # checkRecord(fn='Triet',ln='Le')
     # checkRecord(recid='R7437')
     # showRecordOption()
-    checkInvoice('792895')
+    # checkInvoice('792895')
     # updateGeneralRecord('R2966')
     # updateMeasurement('R2966')
-
+    readPayment()
 if __name__ == "__main__":
     main()

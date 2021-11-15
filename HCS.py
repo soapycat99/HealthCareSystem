@@ -110,7 +110,7 @@ def cardPayment(receipt,accID):
 
     DB.storePayment(payInfo)
 
-    #Delete invoice
+    # TODO: delete invoice paid
 
 
 def createRecord():
@@ -171,6 +171,7 @@ def showRecordOption(recID):
 
 
 def checkInvoice(accID):
+    # TODO: automatically retrieve invoice from the current account
     invList = DB.checkInvoice(accID)
     key = list()
     if invList != None:
@@ -206,7 +207,37 @@ def payingAlert(num):
     return order
 
 def readPayment():
-    pass
+    opt = 0
+    print('1. Reference number')
+    print('2. Name')
+    while True:
+        try:
+            opt = int(input('Search by: '))
+        except:
+            continue
+        if opt in (1,2):
+            break
+
+    refNum,lastName,firstName = None,None,None
+    info = []
+    if opt == 1:
+        refNum = input('Reference Number: ')
+        info = DB.readPayment(refNum)
+    else:
+        firstName = input('First Name: ')
+        lastName = input('Last Name: ')
+        info = DB.readPayment(lastName = lastName,firstName = firstName)
+
+    if info != None:
+        key = ['Reference Number','First Name','Last Name','Amount','Date','Time']
+        for k,i in zip(key,info):
+            print(f'{k:>16}: {i:}')
+    else:
+        print('Wrong input!')
+
+
+
+
 
 def updateGeneralRecord(recID):
     print('this is updating general record')

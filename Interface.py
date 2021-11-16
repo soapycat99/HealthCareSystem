@@ -62,9 +62,9 @@ def main():
     # checkRecord(fn='Triet',ln='Le')
     checkRecord(recid='R7437')
     # showRecordOption()
-    # checkInvoice('792895')
+    # checkInvoice4('792895')
     # updateGeneralRecord('R2966')
-    # updateMeasurement('R2966')
+    # updateMeasurem4ent('R2966')
     # readPayment()
 
 if __name__ == "__main__":

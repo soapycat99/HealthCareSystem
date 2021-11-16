@@ -167,7 +167,8 @@ def showRecordOption(recID):
             print('Invalid, try again')
             continue
 
-    checkRecord(recid=recID)
+    if opt != 5:
+        checkRecord(recid=recID)
 
 
 
@@ -238,9 +239,13 @@ def checkDailyList(docID):
     pass
 
 def addPatient(recID):
-    docID = input('Doctor ID: ')
-    DB.addPatient(recID,docID)
-    # TODO: Convert DailyList.csv to txt because cannot overwrite with more column
+    print('1. Anh Nguyen\n'
+          '2. Quan Huynh\n'
+          '3. Sheldon Cooper\n'
+          '4. Howard Wolowitz\n')
+
+    opt = int(input('Choose doctor: '))
+    DB.addPatient(recID,opt)
 
 def updateGeneralRecord(recID):
     print('this is updating general record')

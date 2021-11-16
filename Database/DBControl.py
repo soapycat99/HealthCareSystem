@@ -46,5 +46,5 @@ def readPayment(refNum=None,firstName=None,lastName=None):
     info =  rd.readPayment(refNum,firstName,lastName)
     return info
 
-def addPatient(recID,doctor):
-    ud.addPatient(recID,doctor)
+def addPatient(recID,opt):
+    ud.addPatient(recID,opt)

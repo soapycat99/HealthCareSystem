@@ -1,4 +1,5 @@
 import csv
+import re
 
 def updateGeneralRecord(opt, data, recID):
     with open(f'Database/RecDir/{recID}.txt', 'r') as out:
@@ -53,20 +54,16 @@ def updateAppointment(opt,data,appID):
     print(lastName, phoneNumber)
     return lastName, phoneNumber
 
-def addPatient(recid,docID):
-    lines = list()
+def addPatient(recid,opt):
 
-    with open('Database/DailyList.csv', 'r') as out:
-            reader = csv.reader(out)
-            for row in reader:
-                if row[0] != docID:
-                    print(row)
-                    lines.append(row)
-                else:
-                    row.append(recid)
-                    print(row)
-                    lines.append(row)
+    with open(f'Database/DailyList', 'r') as out:
+        # try:
+        lines = out.readlines()
+        line = lines[opt].strip()
+        line = f'{line},{recid}\n'
 
-    with open('Database/AppDB.csv', 'w') as inp:
-        writer = csv.writer(inp)
-        writer.writerows(lines)
+        lines[opt] = line
+
+    with open(f'Database/DailyList', 'w') as inp:
+        inp.writelines(lines)
+

@@ -112,7 +112,6 @@ def cardPayment(receipt,accID):
 
     # TODO: delete invoice paid
 
-
 def createRecord():
     record = []
     record.append(input('First Name: '))
@@ -124,50 +123,52 @@ def createRecord():
     record.append(input('Insurance Name: '))
     DB.createRecord(record)
 
-def checkRecord(fn = None, ln = None, recid = None):
-    info = DB.checkRecord(fn,ln,recid)
-    print(info)
+def getRecord(fn = None, ln = None, recid = None):
+    info = DB.checkRecord(fn, ln, recid)
     info1 = info[:8]
-    print(info1)
     info2 = info[8:-1]
     summary = info[-1]
-    print(info2)
 
-    key1 = ['First Name', 'Last Name', 'Address', 'Phone', 'Email', 'SSN','Insurance Name', 'RecID']
-    key2 = ['Weight','Height','Blood Pressure','Pulse','Radiology','Pathology','Allergy','Prescription']
+    key1 = ['First Name', 'Last Name', 'Address', 'Phone', 'Email', 'SSN', 'Insurance Name', 'RecID']
+    key2 = ['Weight', 'Height', 'Blood Pressure', 'Pulse', 'Radiology', 'Pathology', 'Allergy', 'Prescription']
 
-    for k1,i1,k2,i2 in zip(key1,info1,key2,info2):
+    for k1, i1, k2, i2 in zip(key1, info1, key2, info2):
         firstVal = f'{k1}: {i1}'
         if k2 != 'Weight':
             print(f'{firstVal:<45} {k2}: {i2:<25} ')
         else:
             print(f'{firstVal:<45} {k2}: {i2:<25} Summary: {summary}')
-
-    print('-'*75,'\n')
-
+    print('-' * 75, '\n')
 
     recID = info1[-1]
+    return recID
+
+def checkRecord(fn = None, ln = None, recid = None):
+    recID = getRecord(fn,ln,recid)
     showRecordOption(recID)
 
 def showRecordOption(recID):
     print('Select Option')
-    for count,key in enumerate(['Update General Record','Update Treatment','Update Measurement','X'],1):
+    for count,key in enumerate(['Update General Record','Update Treatment','Update Measurement',"Add into doctor's list",'X'],1):
         print(f'{count}. {key}')
     opt = 0
-    option = ['updateGeneralRecord','updateTreatment','updateMeasurement']
+    option = ['updateGeneralRecord','updateTreatment','updateMeasurement','addPatient']
 
     while True:
         try:
             opt = int(input('Input: '))
-            if opt >= 1 and opt <= 3:
+            if opt >= 1 and opt <=4:
                 globals()[option[opt-1]](recID)
                 break
-            elif opt == 4:
+            elif opt == 5:
                 break
             print('Invalid, try again')
         except ValueError:
             print('Invalid, try again')
             continue
+
+    checkRecord(recid=recID)
+
 
 
 def checkInvoice(accID):
@@ -185,8 +186,6 @@ def checkInvoice(accID):
         if order != None:
             receipt = tuple(invList[order])
             cardPayment(receipt,accID)
-
-
 
 def payingAlert(num):
     opt = None
@@ -235,9 +234,13 @@ def readPayment():
     else:
         print('Wrong input!')
 
+def checkDailyList(docID):
+    pass
 
-
-
+def addPatient(recID):
+    docID = input('Doctor ID: ')
+    DB.addPatient(recID,docID)
+    # TODO: Convert DailyList.csv to txt because cannot overwrite with more column
 
 def updateGeneralRecord(recID):
     print('this is updating general record')
@@ -258,7 +261,6 @@ def updateGeneralRecord(recID):
             print('Invalid, try again')
             continue
     DB.updateGeneralRecord(opt-1,data,recID)
-    checkRecord(recid=recID)
 
 def updateMeasurement(recID):
     category = ['Weight','Height','Blood Pressure','Pulse']
@@ -281,7 +283,6 @@ def updateMeasurement(recID):
     pos = opt + 8  #line position
 
     DB.updateMeasurement(pos, data, recID)
-    checkRecord(recid=recID)
 
 def updateTreatment(recID):
     category = ['Radiology','Pathology','Allergy','Prescription','Summary']
@@ -304,5 +305,4 @@ def updateTreatment(recID):
     pos = opt + 13  # line position
 
     DB.updateMeasurement(pos, data, recID)
-    checkRecord(recid=recID)
 

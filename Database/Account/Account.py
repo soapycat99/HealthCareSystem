@@ -1,7 +1,7 @@
 import random
 import Interface
 
-class Account(Interface):
+class Account():
     
     def __init__(self, firstName, lastName, phoneNumber, username, password, category):
         self.firstName = firstName
@@ -28,9 +28,16 @@ class Staff(Account):
         self.salary = salary
 
 class Doctor(Account):
-    def __init__(self, firstName, lastName, phoneNumber, username, password, salary):
+    def __init__(self, firstName, lastName, phoneNumber, username, password, salary = None, dailyList = []):
         Account.__init__(self,firstName, lastName, phoneNumber, username, password)
         self.salary = salary
+        self.dailyList= dailyList
+
+    def addPatient(self,record):
+        self.dailyList.append(record)
+
+    def getList(self):
+        return self.dailyList
 
 class Nurse(Account):
     def __init__(self, firstName, lastName, phoneNumber, username, password, salary):

@@ -53,3 +53,20 @@ def updateAppointment(opt,data,appID):
     print(lastName, phoneNumber)
     return lastName, phoneNumber
 
+def addPatient(recid,docID):
+    lines = list()
+
+    with open('Database/DailyList.csv', 'r') as out:
+            reader = csv.reader(out)
+            for row in reader:
+                if row[0] != docID:
+                    print(row)
+                    lines.append(row)
+                else:
+                    row.append(recid)
+                    print(row)
+                    lines.append(row)
+
+    with open('Database/AppDB.csv', 'w') as inp:
+        writer = csv.writer(inp)
+        writer.writerows(lines)

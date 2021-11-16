@@ -1,7 +1,7 @@
 import HCS
 
-def verifyInfo(acc,pw):
-    return HCS.verifyInfo(acc,pw)
+def logIn():
+    return HCS.enterInfo()
 
 def signUp():
     HCS.signUp()
@@ -11,12 +11,6 @@ def makeAppointment():
 
 def checkAppointment():
     return HCS.checkAppointment()
-
-def updateAppointment(appID):
-    HCS.updateAppointment(appID)
-
-def cancelAppointment(appID):
-    HCS.cancelAppointment(appID)
 
 def cardPayment():
     pass

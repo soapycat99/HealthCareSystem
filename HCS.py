@@ -6,14 +6,12 @@ import ReceiptOutput.DispenserControl as RD
 def enterInfo():
     username = input('Enter ID: ')
     password = input('Enter passworld: ')
-    verifyInfo(username,password)
-    return username, password
+    result = verifyInfo(username,password)
+    return result
+
 
 def verifyInfo(username, password):
-    if(DB.verifyInfo(username,password) == True):
-        print('Access granted')
-    else:
-        print('GG')
+    return DB.verifyInfo(username,password)
 
 def signUp():
     firstName = input('First name: ')

@@ -3,8 +3,13 @@ import random
 import csv
 
 def createAccount(firstName, lastName, phoneNumber, username, password, category):
-    Acc = ac.Account(firstName,lastName,phoneNumber,username,password, category)
-    Acc.saveAccount(firstName,lastName,phoneNumber,username,password, Acc.idNum, category)
+    idNum = str(random.randint(100001, 999999))
+    saveAccount(firstName,lastName,phoneNumber,username,password, idNum, category)
+
+def saveAccount(firstName,lastName,phoneNumber,username,password, idNum, category):
+    with open('Database/Account/AccDB','a') as outfile:
+        outfile.write('\n')
+        outfile.write(f'{firstName} | {lastName} | {phoneNumber} | {username} | {password} | {idNum} | {category} | N/A')
 
 def createAppointment(info):
     appID = str(random.randint(100001, 999999))

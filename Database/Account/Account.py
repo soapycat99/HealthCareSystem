@@ -1,35 +1,23 @@
-import random
-import Interface
+import Interface as inf
 
-class Account():
-    
-    def __init__(self, firstName, lastName, phoneNumber, username, password, category):
-        self.firstName = firstName
-        self.lastName = lastName
-        self.phoneNumber = phoneNumber
-        self.password = password
-        self.username = username
-        self.category = category
-        self.idNum = str(random.randint(100001,999999))
-        print(self.idNum)
 
-    def saveAccount(self):
-        with open('Database/Account/AccDB','a') as outfile:
-            outfile.write('\n')
-            outfile.write(f'{self.firstName} | {self.lastName} | {self.phoneNumber} | {self.username} | {self.password} | {self.idNum} | {self.category} | N/A')
+class Patient():
+    def __init__(self,recordID=None):
+        self.recordID = recordID
 
-class Patient(Account):
-    def __init__(self, firstName, lastName, phoneNumber, username,password, category):
-        Account.__init__(self,firstName, lastName, phoneNumber, username, password,category)
+    def makeAppointment(self):
+        inf.makeAppointment()
 
-class Staff(Account):
-    def __init__(self, firstName, lastName, phoneNumber, username, password, salary):
-        Account.__init__(self,firstName, lastName, phoneNumber, username, password)
+    def checkAppointment(self):
+        inf.checkAppointment()
+
+
+class Staff():
+    def __init__(self, salary):
         self.salary = salary
 
-class Doctor(Account):
-    def __init__(self, firstName, lastName, phoneNumber, username, password, salary = None, dailyList = []):
-        Account.__init__(self,firstName, lastName, phoneNumber, username, password)
+class Doctor():
+    def __init__(self,salary = None, dailyList = None):
         self.salary = salary
         self.dailyList= dailyList
 
@@ -39,12 +27,10 @@ class Doctor(Account):
     def getList(self):
         return self.dailyList
 
-class Nurse(Account):
-    def __init__(self, firstName, lastName, phoneNumber, username, password, salary):
-        Account.__init__(self, firstName, lastName, phoneNumber, username, password)
+class Nurse():
+    def __init__(self,salary):
         self.salary = salary
 
-class CEO(Account):
-    def __init__(self, firstName, lastName, phoneNumber, username, password, salary):
-        Account.__init__(self, firstName, lastName, phoneNumber, username, password)
+class CEO():
+    def __init__(self, salary):
         self.salary = salary

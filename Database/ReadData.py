@@ -10,7 +10,6 @@ def readInfo(acc, pw):
             info = [x.strip() for x in line.split('|')[3:5]]
             if acc == info[0]:
                 if pw == info[1]:
-                    print('Yayyy')
                     return True
                 else:
                     return False

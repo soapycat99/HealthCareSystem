@@ -25,8 +25,9 @@ def main():
         opt = inf.showFunc(user.func)
         if opt == 4:
             sys.exit()
-        eval(user.actFunc[opt])
-        # user.checkRecord()
 
+        eval(f'user.{user.actFunc[opt]}')
+        # user.checkRecord()
+        # TODO: fix make appointment -> auto fill name and phone number
 if __name__ == "__main__":
     main()

@@ -12,9 +12,6 @@ def makeAppointment():
 def checkAppointment():
     return HCS.checkAppointment()
 
-def cardPayment():
-    pass
-
 def createRecord():
     HCS.createRecord()
 

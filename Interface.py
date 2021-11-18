@@ -10,16 +10,26 @@ def makeAppointment(fn=None,ln=None):
     HCS.makeAppointment(fn,ln)
 
 def checkAppointment():
-    return HCS.checkAppointment()
+    HCS.checkAppointment()
 
 def createRecord():
     HCS.createRecord()
 
-def checkRecord(fn = None,ln = None ,recid = None):
-    return HCS.checkRecord(fn,ln,recid)
+def checkRecord(actor,fn = None,ln = None ,recid = None):
+    HCS.checkRecord(fn,ln,recid)
+    actList = ['Patient','Staff','Nurse','Doctor','CEO']
+    if actor == actList[1]:
+        HCS.showStaffOption(recid)
+    elif actor == actList[2]:
+        HCS.showNurseOption(recid)
+    elif actor == actList[3]:
+        HCS.showDoctorOption(recid)
+
+
+
 
 def checkInvoice(accID):
-    return HCS.checkInvoice(accID)
+    HCS.checkInvoice(accID)
 
 def updateGeneralRecord(recID):
     HCS.updateGeneralRecord(recID)

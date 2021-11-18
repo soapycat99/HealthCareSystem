@@ -27,7 +27,8 @@ class Patient():
         if self.recordID == None:
             print("Patient haven't created a record")
         else:
-            inf.checkRecord(recid=self.recordID)
+            actor = self.__class__.__name__
+            inf.checkRecord(actor= actor,recid=self.recordID)
 
     def checkInvoice(self):
         inf.checkInvoice(self.accID)

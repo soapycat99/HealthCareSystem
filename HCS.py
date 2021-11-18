@@ -165,14 +165,61 @@ def getRecord(fn = None, ln = None, recid = None):
 
 def checkRecord(fn = None, ln = None, recid = None):
     recID = getRecord(fn,ln,recid)
-    showRecordOption(recID)
+    # showRecordOption(recID)
+
+funcList = ['updateGeneralRecord','updateMeasurement','updateTreatment','addPatient']
+option = ['Update General Record','Update Measurement','Update Treatment',"Add into doctor's list"]
+
+def showStaffOption(recID):
+    '''Show options for staff actor after checking record, and implement the selected function'''
+    actOpt = [option[0],option[-1],'X']
+    actFunc= [funcList[0],funcList[-1]]
+    for count,key in enumerate(actOpt,1):
+        print(f'{count}. {key}')
+
+    call_function(recID,actFunc)
+
+
+def showNurseOption(recID):
+    for count,key in enumerate([option[1],'X'],1):
+        print(f'{count}. {key}')
+    call_function(recID,[funcList[1]])
+
+
+def showDoctorOption(recID):
+    for count,key in enumerate([option[2],'X'],1):
+        print(f'{count}. {key}')
+    call_function(recID,[funcList[2]])
+
+
+def call_function(recID,actFunc):
+    opt = 0
+    l = len(actFunc)
+    while True:
+        try:
+            opt = int(input('Input: '))
+            if opt >= 1 and opt <= l-1:
+                globals()[actFunc[opt - 1]](recID)
+                break
+            elif opt == l:
+                break
+            print('Invalid, try again')
+        except ValueError:
+            print('Invalid, try again')
+            continue
+
+    if opt != l:
+        checkRecord(recid=recID)
 
 def showRecordOption(recID):
+    # TODO: Delete this function after done testing
     print('Select Option')
-    for count,key in enumerate(['Update General Record','Update Treatment','Update Measurement',"Add into doctor's list",'X'],1):
+    for count,key in enumerate(['Update General Record','Update Measurement',
+                                'Update Treatment',"Add into doctor's list",'X'],1):
         print(f'{count}. {key}')
     opt = 0
-    option = ['updateGeneralRecord','updateTreatment','updateMeasurement','addPatient']
+    option = ['updateGeneralRecord','updateMeasurement','updateTreatment','addPatient']
+
 
     while True:
         try:

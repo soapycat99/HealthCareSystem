@@ -7,13 +7,14 @@ def readInfo(acc, pw):
     with open('Database/Account/AccDB', 'r') as outfile:
         next(outfile)
         for line in outfile:
-            info = [x.strip() for x in line.split('|')[3:5]]
-            if acc == info[0]:
-                if pw == info[1]:
-                    return True
+            info = [x.strip() for x in line.split('|')]
+            if acc == info[3]:
+                if pw == info[4]:
+                    return info[-3],info[-2]
                 else:
-                    return False
-    return False
+                    return None
+    return None
+
 def getName(accID):
     with open('Database/Account/AccDB', 'r') as outfile:
         next(outfile)
@@ -33,20 +34,21 @@ def readAppointment(lastName, phoneNumber):
                     return line
         return None
 
+
 def readRecord(fn,ln,recid):
     dir = '/Users/soapycat/PycharmProjects/HealthCareSystem/Database/RecDir'
     info = []
     if recid != None:
         try:
-            with open(f'Database/RecDir/{recid}.txt','r') as f:
+            with open(f'Database/RecDir/{recid}.txt', 'r') as f:
                 try:
                     for line in f:
-                        if len(line.split(':'))>1:
+                        if len(line.split(':')) > 1:
                             info.append(line.split(':')[1].strip())
+
                 except Exception as ex:
                     template = "An exception of type {0} occurred. Arguments:\n{1!r}"
                     message = template.format(type(ex).__name__, ex.args)
-                    print('loi o day ne')
                     print(message)
             return info
 
@@ -56,8 +58,6 @@ def readRecord(fn,ln,recid):
             print('loi o day ne')
             print(message)
             return None
-
-
     else:
         for filename in os.listdir(dir):
             try:
@@ -71,14 +71,16 @@ def readRecord(fn,ln,recid):
                             for line in f:
                                 if len(line.split(':'))>1:
                                     info.append(line.split(':')[1].strip())
+                            return info
                         except Exception as ex:
                             template = "An exception of type {0} occurred. Arguments:\n{1!r}"
                             message = template.format(type(ex).__name__, ex.args)
                             print(message)
-                return info
+
 
             except:
                 print('Failling check ln and fn')
+        return None
 
 def readInvoice(accID):
     invList = []

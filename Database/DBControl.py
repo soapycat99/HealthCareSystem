@@ -24,7 +24,7 @@ def cancelAppointment(appID):
 def createRecord(record):
     cd.createRecord(record)
 
-def checkRecord(fn,ln,recid):
+def checkRecord(fn = None ,ln = None ,recid = None):
     return rd.readRecord(fn,ln,recid)
 
 def checkInvoice(accID):

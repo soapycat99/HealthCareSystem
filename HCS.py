@@ -122,7 +122,9 @@ def createRecord():
     DB.createRecord(record)
 
 def getRecord(fn = None, ln = None, recid = None):
+
     info = DB.checkRecord(fn, ln, recid)
+    print(info)
     info1 = info[:8]
     info2 = info[8:-1]
     summary = info[-1]

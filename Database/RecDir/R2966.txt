@@ -1,9 +1,20 @@
 First Name: Triet
-Last Name: Nguyen
+Last Name: Le
 Address: 1003 Park Street
 Phone Number: 3344921099
 Email: soapycatlatui@gmail.com
 SSN: 4124124
 Insurance Name: United
 Record ID: R2966
+------------------------------
+Weight: 65
+Height: N/A
+Blood Pressure: N/A
+Pulse: N/A
+------------------------------
+Radiology: N/A
+Pathology: N/A
+Allergy: Peanut
+Prescription: N/A
+Summary: N/A
 ------------------------------

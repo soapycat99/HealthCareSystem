@@ -39,7 +39,25 @@ def readPayment():
 def checkDailyList():
     HCS.checkDailyList()
 
+def showFunc(func):
+    opt = None
+    for count,key in enumerate(func,1):
+        print(f'{count}. {key}')
+
+    while True:
+        try:
+            opt = int(input('Enter: '))
+            if opt <= 0 or opt > 5:
+                continue
+        except ValueError:
+            continue
+
+        break
+
+    return opt-1
+
 def main():
+    pass
     # info = signUp()
     # for i in info:
     #     print(i)
@@ -53,8 +71,8 @@ def main():
     # cancelAppointment((appID))
 
     # createRecord()
-    # checkRecord(fn='Triet',ln='Le')
-    checkRecord(recid='R7437')
+    # checkRecord(fn='Nam',ln='Dang')
+    # checkRecord(recid='R7437')
     # showRecordOption()
     # checkInvoice4('792895')
     # updateGeneralRecord('R2966')

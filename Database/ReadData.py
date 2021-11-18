@@ -25,7 +25,8 @@ def getName(accID):
     return None
 
 def readAppointment(lastName, phoneNumber):
-    with open('Database/AppDB.csv', 'r') as f:
+    print(lastName,phoneNumber)
+    with open('Database/App.csv', 'r') as f:
         csvreader = csv.reader(f)
         next(csvreader)
         for line in csvreader:

@@ -4,8 +4,8 @@ import time
 import ReceiptOutput.DispenserControl as RD
 
 def enterInfo():
-    username = input('Enter ID: ')
-    password = input('Enter passworld: ')
+    username = input('ID: ')
+    password = input('Passworld: ')
     result = verifyInfo(username,password)
     return result
 
@@ -34,9 +34,25 @@ def makeAppointment(fn, ln):
         info.append(ln)
 
     info.append(input('Phone number: '))
-    info.append(input('Doctor: '))
-    info.append(input('Date: '))
-    info.append(input('Time: '))
+    print('Doctor List: ')
+
+    #Select doctor
+    docList = ['Anh Nguyen','Quan Huynh','Sheldon Cooper','Howard Wolowitz']
+    for count,value in enumerate(docList,1):
+        print(f'{count}. {value}')
+    while True:
+        try:
+            opt = int(input('Choose: '))
+            if opt <= 1 or opt > 4:
+                continue
+            info.append(docList[opt])
+            break
+        except:
+            continue
+
+
+    info.append(input('Date(MM/DD/YY): '))
+    info.append(input('Time(h:mm p): '))
     DB.makeAppointment(info)
 
 def checkAppointment(lastName = None, phoneNumber = None):
@@ -53,7 +69,6 @@ def checkAppointment(lastName = None, phoneNumber = None):
         print('1/ Update Appointment')
         print('2/ Cancel Appointment')
         print('3/ X')
-        print(f'AppID = {info[0]} and type {type(info[0])}')
         opt = input('Enter: ')
         if int(opt) == 1:
             updateAppointment(info[0])

@@ -17,7 +17,6 @@ def main():
             print('Wrong id/password. Please type again')
 
 
-
     obj = f'ac.{actor}({accID})'
     user = eval(obj)
 
@@ -28,6 +27,5 @@ def main():
 
         eval(f'user.{user.actFunc[opt]}')
         # user.checkRecord()
-        # TODO: fix make appointment -> auto fill name and phone number
 if __name__ == "__main__":
     main()

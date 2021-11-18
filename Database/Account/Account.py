@@ -5,8 +5,7 @@ import Database.DBControl as DB
 
 class Patient():
     def __init__(self,accID):
-        # TODO: Return accID to retrieve other info
-        # TODO: retrieve record ID by accID
+
         self.accID = str(accID)
         self.firstName,self.lastName = rd.getName(self.accID)
 
@@ -19,7 +18,7 @@ class Patient():
 
 
     def makeAppointment(self):
-        inf.makeAppointment()
+        inf.makeAppointment(self.firstName,self.lastName)
 
     def checkAppointment(self):
         inf.checkAppointment()

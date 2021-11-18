@@ -6,8 +6,8 @@ def logIn():
 def signUp():
     HCS.signUp()
 
-def makeAppointment():
-    HCS.makeAppointment()
+def makeAppointment(fn=None,ln=None):
+    HCS.makeAppointment(fn,ln)
 
 def checkAppointment():
     return HCS.checkAppointment()

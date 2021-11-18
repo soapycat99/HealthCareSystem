@@ -24,10 +24,15 @@ def signUp():
 
     return [firstName, lastName, phoneNumber, username, password, category]
 
-def makeAppointment():
+def makeAppointment(fn, ln):
     info = []
-    info.append(input('First name: '))
-    info.append(input('Last name: '))
+    if fn == None and ln == None:
+        info.append(input('First name: '))
+        info.append(input('Last name: '))
+    else:
+        info.append(fn)
+        info.append(ln)
+
     info.append(input('Phone number: '))
     info.append(input('Doctor: '))
     info.append(input('Date: '))

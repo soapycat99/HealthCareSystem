@@ -14,7 +14,7 @@ Pulse: N/A
 ------------------------------
 Radiology: N/A
 Pathology: N/A
-Allergy: Peanut
+Allergy: Beef, Seafood
 Prescription: N/A
-Summary: N/A
+Summary: Last stage of cancer
 ------------------------------

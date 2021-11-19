@@ -17,16 +17,42 @@ def createRecord():
 
 
 def checkRecord(actor=None,fn = None,ln = None ,recid = None):
-    HCS.checkRecord(fn,ln,recid)
+
     actList = ['Patient','Staff','Nurse','Doctor','CEO']
-    if actor == actList[1]:
-        HCS.showStaffOption(recid)
-    elif actor == actList[2]:
-        HCS.showNurseOption(recid)
-    elif actor == actList[3]:
-        HCS.showDoctorOption(recid)
 
+    #showing option board searching by name or by record id
+    if actor != actList[0]:
+        opt = 0
+        while True:
+            print('Searching by:\n'
+                  '1. Record ID\n'
+                  '2. First name, Last name')
+            try:
+                opt = int(input('Choose: '))
+                if opt != 1 and opt != 2:
+                    continue
+                else:
+                    break
+            except Exception:
+                continue
 
+        if opt == 1:
+            recid = input('Record ID: ')
+        else:
+            fn = input('First Name: ')
+            ln = input('Last Name: ')
+    try:
+        recid = HCS.checkRecord(fn,ln,recid)
+
+        if actor == actList[1]:
+            HCS.showStaffOption(recid)
+        elif actor == actList[2]:
+            HCS.showNurseOption(recid)
+        elif actor == actList[3]:
+            HCS.showDoctorOption(recid)
+
+    except Exception:
+        print('Unavailable')
 
 def checkInvoice(accID):
     HCS.checkInvoice(accID)

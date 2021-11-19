@@ -43,13 +43,23 @@ class Doctor():
     def __init__(self,accID):
         self.accID = accID
         self.dailyList= rd.getDailyList(self.accID)
-        # TODO: retrieve daily list for doctor
+        self.func = ['Read Payment Information','Check Daily List','Check Record',  'X']
+        self.actFunc = ['readPayment()', 'checkDailyList()', 'checkRecord()']
 
     def addPatient(self,record):
         self.dailyList.append(record)
 
-    def getList(self):
+    def checkDailyList(self):
         inf.checkDailyList(*self.dailyList)
+
+    def readPayment(self):
+        inf.readPayment()
+
+    def checkRecord(self):
+        actor = self.__class__.__name__
+        inf.checkRecord(actor=actor)
+
+
 
 
 

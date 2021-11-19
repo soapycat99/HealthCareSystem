@@ -20,14 +20,15 @@ def main():
     obj = f'ac.{actor}({accID})'
     user = eval(obj)
     # print(user.dailyList)
-    user.getList()
+    # user.readPayment()
 
-    # while True:
-    #     opt = inf.showFunc(user.func)
-    #     if opt == 4:
-    #         sys.exit()
-    #
-    #     eval(f'user.{user.actFunc[opt]}')
+    while True:
+        opt = inf.showFunc(user.func)
+        if opt == len(user.func) - 1:
+            print('SYSTEM EXIT')
+            sys.exit()
+        eval(f'user.{user.actFunc[opt]}')
+        print('-'*75)
         # user.checkRecord()
 if __name__ == "__main__":
     main()

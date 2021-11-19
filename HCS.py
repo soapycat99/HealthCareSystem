@@ -3,6 +3,9 @@ import sys
 import time
 import ReceiptOutput.DispenserControl as RD
 
+funcList = ['updateGeneralRecord','updateMeasurement','updateTreatment','addPatient']
+option = ['Update General Record','Update Measurement','Update Treatment',"Add into doctor's list"]
+
 def enterInfo():
     username = input('ID: ')
     password = input('Passworld: ')
@@ -163,11 +166,8 @@ def getRecord(fn = None, ln = None, recid = None):
     return recID
 
 def checkRecord(fn = None, ln = None, recid = None):
-    recID = getRecord(fn,ln,recid)
+    return getRecord(fn,ln,recid)
     # showRecordOption(recID)
-
-funcList = ['updateGeneralRecord','updateMeasurement','updateTreatment','addPatient']
-option = ['Update General Record','Update Measurement','Update Treatment',"Add into doctor's list"]
 
 def showStaffOption(recID):
     '''Show options for staff actor after checking record, and implement the selected function'''
@@ -191,23 +191,24 @@ def showDoctorOption(recID):
     call_function(recID,[funcList[2]])
 
 
-def call_function(recID,actFunc):
+def call_function(recID,actFunc:list):
     opt = 0
     l = len(actFunc)
+    print(type(actFunc),actFunc,l)
     while True:
         try:
             opt = int(input('Input: '))
-            if opt >= 1 and opt <= l-1:
+            if opt >= 1 and opt <= l:
                 globals()[actFunc[opt - 1]](recID)
                 break
-            elif opt == l:
+            elif opt == l+1:
                 break
             print('Invalid, try again')
         except ValueError:
             print('Invalid, try again')
             continue
 
-    if opt != l:
+    if opt != l+1:
         checkRecord(recid=recID)
 
 def showRecordOption(recID):
@@ -235,8 +236,6 @@ def showRecordOption(recID):
 
     if opt != 5:
         checkRecord(recid=recID)
-
-
 
 def checkInvoice(accID):
     invList = DB.checkInvoice(accID)

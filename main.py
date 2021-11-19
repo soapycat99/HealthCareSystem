@@ -19,13 +19,15 @@ def main():
 
     obj = f'ac.{actor}({accID})'
     user = eval(obj)
+    # print(user.dailyList)
+    user.getList()
 
-    while True:
-        opt = inf.showFunc(user.func)
-        if opt == 4:
-            sys.exit()
-
-        eval(f'user.{user.actFunc[opt]}')
+    # while True:
+    #     opt = inf.showFunc(user.func)
+    #     if opt == 4:
+    #         sys.exit()
+    #
+    #     eval(f'user.{user.actFunc[opt]}')
         # user.checkRecord()
 if __name__ == "__main__":
     main()

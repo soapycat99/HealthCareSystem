@@ -36,19 +36,22 @@ class Patient():
 
 
 class Staff():
-    def __init__(self, salary):
-        self.salary = salary
+    def __init__(self, accID):
+        self.accID = accID
 
 class Doctor():
-    def __init__(self,salary = None, dailyList = None):
-        self.salary = salary
-        self.dailyList= dailyList
+    def __init__(self,accID):
+        self.accID = accID
+        self.dailyList= rd.getDailyList(self.accID)
+        # TODO: retrieve daily list for doctor
 
     def addPatient(self,record):
         self.dailyList.append(record)
 
     def getList(self):
-        return self.dailyList
+        inf.checkDailyList(*self.dailyList)
+
+
 
 class Nurse():
     def __init__(self,salary):

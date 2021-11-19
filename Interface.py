@@ -15,7 +15,8 @@ def checkAppointment():
 def createRecord():
     HCS.createRecord()
 
-def checkRecord(actor,fn = None,ln = None ,recid = None):
+
+def checkRecord(actor=None,fn = None,ln = None ,recid = None):
     HCS.checkRecord(fn,ln,recid)
     actList = ['Patient','Staff','Nurse','Doctor','CEO']
     if actor == actList[1]:
@@ -27,9 +28,9 @@ def checkRecord(actor,fn = None,ln = None ,recid = None):
 
 
 
-
 def checkInvoice(accID):
     HCS.checkInvoice(accID)
+
 
 def updateGeneralRecord(recID):
     HCS.updateGeneralRecord(recID)
@@ -43,8 +44,10 @@ def showRecordOption():
 def readPayment():
     HCS.readPayment()
 
-def checkDailyList():
-    HCS.checkDailyList()
+def checkDailyList(*args):
+    HCS.checkDailyList(*args)
+
+
 
 def showFunc(func):
     opt = None
@@ -79,7 +82,7 @@ def main():
 
     # createRecord()
     # checkRecord(fn='Nam',ln='Dang')
-    # checkRecord(recid='R7437')
+    checkRecord(recid='R7437')
     # showRecordOption()
     # checkInvoice4('792895')
     # updateGeneralRecord('R2966')

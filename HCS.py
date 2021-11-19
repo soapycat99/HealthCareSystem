@@ -144,7 +144,6 @@ def createRecord():
 def getRecord(fn = None, ln = None, recid = None):
 
     info = DB.checkRecord(fn, ln, recid)
-    print(info)
     info1 = info[:8]
     info2 = info[8:-1]
     summary = info[-1]
@@ -240,7 +239,6 @@ def showRecordOption(recID):
 
 
 def checkInvoice(accID):
-    # TODO: automatically retrieve invoice from the current account
     invList = DB.checkInvoice(accID)
     key = list()
     if invList != None:
@@ -302,8 +300,9 @@ def readPayment():
     else:
         print('Wrong input!')
 
-def checkDailyList(docID):
-    pass
+def checkDailyList(*args):
+    for arg in args:
+        getRecord(recid=arg)
 
 def addPatient(recID):
     print('1. Anh Nguyen\n'
@@ -313,6 +312,7 @@ def addPatient(recID):
 
     opt = int(input('Choose doctor: '))
     DB.addPatient(recID,opt)
+
 
 def updateGeneralRecord(recID):
     print('this is updating general record')
@@ -333,6 +333,7 @@ def updateGeneralRecord(recID):
             print('Invalid, try again')
             continue
     DB.updateGeneralRecord(opt-1,data,recID)
+
 
 def updateMeasurement(recID):
     category = ['Weight','Height','Blood Pressure','Pulse']

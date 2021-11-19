@@ -115,3 +115,13 @@ def readPayment(refNum,firstName,lastName):
                     print(line)
                     return line
             return None
+def getDailyList(accID):
+
+    with open(f'Database/DailyList', 'r') as out:
+        # try:
+        lines = out.readlines()
+        for line in lines[1:]:
+            info = line.strip().split(',')
+            if info[0] == str(accID):
+                return tuple(info[1:])
+        return None

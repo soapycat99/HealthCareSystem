@@ -2,6 +2,7 @@ import Database.DBControl as DB
 import sys
 import time
 import ReceiptOutput.DispenserControl as RD
+import datetime
 
 funcList = ['updateGeneralRecord','updateMeasurement','updateTreatment','addPatient']
 option = ['Update General Record','Update Measurement','Update Treatment',"Add into doctor's list"]
@@ -67,7 +68,11 @@ def makeAppointment(fn, ln):
         info.append(fn)
         info.append(ln)
 
-    info.append(input('Phone number: '))
+    while True:
+        number = input('Phone number: ')
+        if number.isdigit():
+            info.append(number)
+            break
     print('Doctor List: ')
 
     #Select doctor
@@ -79,15 +84,33 @@ def makeAppointment(fn, ln):
             opt = int(input('Choose: '))
             if opt <= 1 or opt > 4:
                 continue
-            info.append(docList[opt])
+            info.append(docList[opt-1])
             break
-        except:
+        except Exception:
             continue
 
+    while True:
+        today = datetime.datetime.now()
+        try:
+            month = input('Month(MM): ')
+            day = input('Day(DD): ')
+            year = input('Year(YYYY): ')
+            appDate = f'{day}/{month}/{year} 0:00'
+            appDate = datetime.datetime.strptime(appDate, "%d/%m/%Y %H:%M")
+            if today < appDate:
+                year = year[-2:]
+                appDate =  f'{month}/{day}/{year}'
+                info.append(appDate)
+                break
+            else:
+                print('No later than current time')
+                continue
+        except Exception:
+            continue
 
-    info.append(input('Date(MM/DD/YY): '))
     info.append(input('Time(h:mm p): '))
     DB.makeAppointment(info)
+    print('Appointment booked!')
 
 def checkAppointment(lastName = None, phoneNumber = None):
     if lastName == None:

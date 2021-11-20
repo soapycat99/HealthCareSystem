@@ -30,7 +30,7 @@ def createAppointment(info):
     appID = str(random.randint(100001, 999999))
     info.insert(0,appID)
 
-    with open('Database/AppDB.csv','a', newline='') as f:
+    with open('Database/App.csv','a', newline='') as f:
         writer = csv.writer(f)
         writer.writerow(info)
 

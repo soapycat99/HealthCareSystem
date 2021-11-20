@@ -38,6 +38,23 @@ class Patient():
 class Staff():
     def __init__(self, accID):
         self.accID = accID
+        self.func = ['Make Appointment','Check Appointment','Read Payment Information','Create Record','Check Record','Log Out','Quit']
+        self.actFunc = ['makeAppointment()','checkAppointment()','readPayment()','createRecord()','checkRecord()']
+    def makeAppointment(self):
+        inf.makeAppointment()
+
+    def checkAppointment(self):
+        inf.checkAppointment()
+
+    def readPayment(self):
+        inf.readPayment()
+
+    def checkRecord(self):
+        actor = self.__class__.__name__
+        inf.checkRecord(actor=actor)
+
+    def createRecord(self):
+        inf.createRecord()
 
 class Doctor():
     def __init__(self,accID):
@@ -46,8 +63,6 @@ class Doctor():
         self.func = ['Read Payment Information','Check Daily List','Check Record', 'Log Out','Quit']
         self.actFunc = ['readPayment()', 'checkDailyList()', 'checkRecord()']
 
-    def addPatient(self,record):
-        self.dailyList.append(record)
 
     def checkDailyList(self):
         inf.checkDailyList(*self.dailyList)
@@ -63,10 +78,12 @@ class Doctor():
 
 
 
+
+
 class Nurse():
     def __init__(self, accID):
         self.accID = accID
-        self.func = ['Read Payment  Information','Check Record','Log Out','Quit']
+        self.func = ['Read Payment Information','Check Record','Log Out','Quit']
         self.actFunc = ['readPayment()','checkRecord()']
 
     def checkRecord(self):
@@ -78,5 +95,5 @@ class Nurse():
 
 
 class CEO():
-    def __init__(self, salary):
-        self.salary = salary
+    def __init__(self, accID):
+        self.accID = accID

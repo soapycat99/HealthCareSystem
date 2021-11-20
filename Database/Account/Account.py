@@ -13,7 +13,7 @@ class Patient():
             self.recordID = DB.checkRecord(fn=self.firstName,ln=self.lastName)[7]
         except Exception:
             self.recordID = None
-        self.func = ['Make Appointment','Check Appointment','Check Record','Check Invoice','X']
+        self.func = ['Make Appointment','Check Appointment','Check Record','Check Invoice','Log Out','Quit']
         self.actFunc = ['makeAppointment()','checkAppointment()','checkRecord()','checkInvoice()']
 
 
@@ -43,7 +43,7 @@ class Doctor():
     def __init__(self,accID):
         self.accID = accID
         self.dailyList= rd.getDailyList(self.accID)
-        self.func = ['Read Payment Information','Check Daily List','Check Record',  'X']
+        self.func = ['Read Payment Information','Check Daily List','Check Record', 'Log Out','Quit']
         self.actFunc = ['readPayment()', 'checkDailyList()', 'checkRecord()']
 
     def addPatient(self,record):
@@ -64,8 +64,18 @@ class Doctor():
 
 
 class Nurse():
-    def __init__(self,salary):
-        self.salary = salary
+    def __init__(self, accID):
+        self.accID = accID
+        self.func = ['Read Payment  Information','Check Record','Log Out','Quit']
+        self.actFunc = ['readPayment()','checkRecord()']
+
+    def checkRecord(self):
+        actor = self.__class__.__name__
+        inf.checkRecord(actor=actor)
+
+    def readPayment(self):
+        inf.readPayment()
+
 
 class CEO():
     def __init__(self, salary):

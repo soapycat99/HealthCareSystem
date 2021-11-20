@@ -4,12 +4,27 @@ import csv
 
 def createAccount(firstName, lastName, phoneNumber, username, password, category):
     idNum = str(random.randint(100001, 999999))
-    saveAccount(firstName,lastName,phoneNumber,username,password, idNum, category)
+    if saveAccount(firstName,lastName,phoneNumber,username,password, idNum, category):
+        return idNum,category
+    else:
+        return None
 
 def saveAccount(firstName,lastName,phoneNumber,username,password, idNum, category):
-    with open('Database/Account/AccDB','a') as outfile:
-        outfile.write('\n')
-        outfile.write(f'{firstName} | {lastName} | {phoneNumber} | {username} | {password} | {idNum} | {category} | N/A')
+    with open('Database/Account/AccDB', 'r') as outfile:
+        next(outfile)
+        for line in outfile:
+            info = [x.strip() for x in line.split('|')]
+            if username == info[3]:
+                return False
+    try:
+        with open('Database/Account/AccDB','a') as outfile:
+            outfile.write('\n')
+            outfile.write(f'{firstName} | {lastName} | {phoneNumber} | {username} | {password} | {idNum} | {category} | N/A')
+        return True
+
+    except Exception:
+        print('Deo hieu bi loi gi?')
+        return False
 
 def createAppointment(info):
     appID = str(random.randint(100001, 999999))

@@ -15,6 +15,6 @@ Pulse: N/A
 Radiology: N/A
 Pathology: N/A
 Allergy: Beef, Seafood
-Prescription: N/A
+Prescription: Orance juice with white rice
 Summary: Last stage of cancer
 ------------------------------

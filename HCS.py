@@ -6,9 +6,10 @@ import ReceiptOutput.DispenserControl as RD
 funcList = ['updateGeneralRecord','updateMeasurement','updateTreatment','addPatient']
 option = ['Update General Record','Update Measurement','Update Treatment',"Add into doctor's list"]
 
-def enterInfo():
-    username = input('ID: ')
-    password = input('Passworld: ')
+def login(username = None, password = None):
+    if username == None and password == None:
+        username = input('ID: ')
+        password = input('Passworld: ')
     result = verifyInfo(username,password)
     return result
 
@@ -17,15 +18,45 @@ def verifyInfo(username, password):
     return DB.verifyInfo(username,password)
 
 def signUp():
-    firstName = input('First name: ')
-    lastName = input('Last name: ')
-    phoneNumber = input('Phone number: ')
-    username = input('Username : ')
-    password = input('Password: ')
-    category = input('Category: ')
-    DB.signUp(firstName, lastName, phoneNumber, username, password, category)
+    firstName,lastName,phoneNumber,username,category = None,None,None,None,None
+    while True:
+        firstName = input('First name: ')
+        lastName = input('Last name: ')
+        phoneNumber = input('Phone number: ')
+        username = input('Username : ')
+        while True:
+            password = input('Password: ')
+            retypePassword = input('Retype Password: ')
+            if password == retypePassword:
+                break
+            else:
+                print("Password retyped doesn't match")
 
-    return [firstName, lastName, phoneNumber, username, password, category]
+        print('Choose your category')
+        categories = ['Patient', 'Staff', 'Nurse', 'Doctor', 'CEO']
+        for count, key in enumerate(categories, 1):
+            print(f'{count}. {key}')
+
+        while True:
+            try:
+                opt = 0
+                opt = int(input('Select(1-5): '))
+                if opt <=0 or opt >5:
+                    continue
+                else:
+                    category = categories[opt-1]
+                    break
+            except ValueError:
+                continue
+
+
+
+        try:
+            accID,actor = DB.signUp(firstName, lastName, phoneNumber, username, password, category)
+            return accID,actor
+
+        except Exception:
+            continue
 
 def makeAppointment(fn, ln):
     info = []

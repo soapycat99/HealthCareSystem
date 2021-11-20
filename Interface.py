@@ -1,7 +1,24 @@
 import HCS
 
-def logIn():
-    return HCS.enterInfo()
+def welcomeInf():
+    print('1. Sign up\n'
+          '2. Login\n'
+          '3. Quit')
+    while True:
+        opt = 0
+        try:
+            opt = int(input('Select(1-3): '))
+            if opt != 1 and opt != 2 and opt != 3:
+                continue
+            else:
+                return opt
+        except ValueError:
+            continue
+
+
+
+def login():
+    return HCS.login()
 
 def signUp():
     HCS.signUp()
@@ -83,7 +100,7 @@ def showFunc(func):
     while True:
         try:
             opt = int(input('Enter: '))
-            if opt <= 0 or opt > 5:
+            if opt <= 0 or opt > len(func):
                 continue
         except ValueError:
             continue
@@ -93,10 +110,9 @@ def showFunc(func):
     return opt-1
 
 def main():
-    pass
-    # info = signUp()
-    # for i in info:
-    #     print(i)
+    # pass
+    signUp()
+
     # HCS.updateGeneralRecord('R2966')
     # username, password = enterInfo()
     # verifyInfo(username, password)
@@ -108,7 +124,7 @@ def main():
 
     # createRecord()
     # checkRecord(fn='Nam',ln='Dang')
-    checkRecord(recid='R7437')
+    # checkRecord(recid='R7437')
     # showRecordOption()
     # checkInvoice4('792895')
     # updateGeneralRecord('R2966')

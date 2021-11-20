@@ -7,7 +7,7 @@ def verifyInfo(acc, pw):
     return rd.readInfo(acc, pw)
 
 def signUp(firstName, lastName, phoneNumber, username, password, category):
-    cd.createAccount(firstName, lastName, phoneNumber, username, password, category)
+    return cd.createAccount(firstName, lastName, phoneNumber, username, password, category)
 
 def makeAppointment(info):
     cd.createAppointment(info)

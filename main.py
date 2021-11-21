@@ -33,8 +33,7 @@ def main():
 
         obj = f'ac.{actor}({accID})'
         user = eval(obj)
-        print('??????')
-        user.readSalaryList()
+        user.updateSalary()
 
         # while True:
         #     opt = inf.showFunc(user.func)

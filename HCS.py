@@ -445,3 +445,30 @@ def readSalaryList():
     #     salTable.add_row(info)
 
     print(salTable)
+
+def updateSalary():
+    newSal = None
+    accid = input('Employee ID: ')
+
+    while True:
+        newSal = input('New Salary: ')
+        if newSal.isdigit():
+            newSal = int(newSal)
+            if newSal > 0:
+                break
+        continue
+
+    try:
+        info = DB.updateSalary(accid,f'${newSal:,}')
+        if info == None:
+            print('Wrong ID')
+        else:
+            name = f'{info[0]} {info[1]}'
+            print(f'Name: {name} \n'
+                  f'Position: {info[-2]}\n'
+                  f'New Salary: {info[-1]}')
+
+    except Exception as e:
+        print(e)
+        print('WTF man?')
+

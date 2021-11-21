@@ -51,3 +51,7 @@ def addPatient(recID,opt):
 
 def readSalaryList():
     return rd.readSalaryList()
+
+def updateSalary(accid,newSal):
+
+    return ud.updateSalary(accid,newSal)

@@ -1,7 +1,7 @@
 FirstName | LastName | PhoneNumber | Username | Password | ID | Type | Salary
 Triet | Le | 334-492-1099 | soapycat | fucku | 549609 | Patient | N/A
 Thao Nguyen | Le | 334-123-456 | thao123 | kobiet | 772556 | Patient | N/A
-Anh | Nguyen | 334-222-111 | anh123 | 123anh | 792895 | Doctor | N/A
+Anh | Nguyen | 334-222-111 | anh123 | 123anh | 792895 | Doctor | $75,000
 Quan | Huynh | 334-412-868 | quan123 | 123quan | 201285 | Doctor | N/A
 Sheldon | Cooper | 334-419-923 | sheldon | nopw | 569212 | Doctor | N/A
 Howard | Wolowitz | 334-890-814 | howard | nowifi | 813914 | Doctor | N/A

@@ -1,17 +1,24 @@
 import csv
-import re
 
-def updateSalary(accid:str,newSal:int):
+def updateSalary(accid:str,newSal:str):
+    updateInfo = []
     with open('Database/Account/AccDB', 'r') as out:
         lines = out.readlines()
-        for line in lines:
+        for count, line in enumerate(lines):
             info = [x.strip() for x in line.split('|')][:-1]
-            if str(info[-3]) == accid:
-                line = ''
+            print(info[-2],accid,info[-2]==accid)
+            if str(info[-2]) == accid:
+                lines[count] = ''
                 for i in info:
-                    line += i + ' | '
-                line += f'{newSal:,}\n'
+                    lines[count] += i + ' | '
+                lines[count] += f'{newSal}\n'
+                info.append(newSal)
+                updateInfo = info
 
+    with open(f'Database/Account/AccDB', 'w') as inp:
+        inp.writelines(lines)
+
+    return updateInfo
 
 
 def updateGeneralRecord(opt, data, recID):

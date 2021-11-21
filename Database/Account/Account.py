@@ -100,3 +100,6 @@ class CEO():
 
     def readSalaryList(self):
         inf.readSalaryList()
+
+    def updateSalary(self):
+        inf.updateSalary()

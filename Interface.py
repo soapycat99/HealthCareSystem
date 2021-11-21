@@ -93,6 +93,9 @@ def checkDailyList(*args):
 def readSalaryList():
     HCS.readSalaryList()
 
+def updateSalary():
+    HCS.updateSalary()
+
 def showFunc(func):
     opt = None
     for count,key in enumerate(func,1):

@@ -97,3 +97,6 @@ class Nurse():
 class CEO():
     def __init__(self, accID):
         self.accID = accID
+
+    def readSalaryList(self):
+        inf.readSalaryList()

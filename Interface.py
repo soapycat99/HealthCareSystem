@@ -21,7 +21,7 @@ def login():
     return HCS.login()
 
 def signUp():
-    HCS.signUp()
+    return HCS.signUp()
 
 def makeAppointment(fn=None,ln=None):
     HCS.makeAppointment(fn,ln)
@@ -90,7 +90,8 @@ def readPayment():
 def checkDailyList(*args):
     HCS.checkDailyList(*args)
 
-
+def readSalaryList():
+    HCS.readSalaryList()
 
 def showFunc(func):
     opt = None

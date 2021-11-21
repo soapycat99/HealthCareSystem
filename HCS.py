@@ -3,6 +3,9 @@ import sys
 import time
 import ReceiptOutput.DispenserControl as RD
 import datetime
+from pwinput import pwinput
+from prettytable import PrettyTable
+
 
 funcList = ['updateGeneralRecord','updateMeasurement','updateTreatment','addPatient']
 option = ['Update General Record','Update Measurement','Update Treatment',"Add into doctor's list"]
@@ -10,7 +13,7 @@ option = ['Update General Record','Update Measurement','Update Treatment',"Add i
 def login(username = None, password = None):
     if username == None and password == None:
         username = input('ID: ')
-        password = input('Passworld: ')
+        password = pwinput('Passworld: ')
     result = verifyInfo(username,password)
     return result
 
@@ -26,8 +29,8 @@ def signUp():
         phoneNumber = input('Phone number: ')
         username = input('Username : ')
         while True:
-            password = input('Password: ')
-            retypePassword = input('Retype Password: ')
+            password = pwinput('Password: ')
+            retypePassword = pwinput('Retype Password: ')
             if password == retypePassword:
                 break
             else:
@@ -54,6 +57,7 @@ def signUp():
 
         try:
             accID,actor = DB.signUp(firstName, lastName, phoneNumber, username, password, category)
+            print(accID,actor)
             return accID,actor
 
         except Exception:
@@ -432,3 +436,12 @@ def updateTreatment(recID):
 
     DB.updateMeasurement(pos, data, recID)
 
+def readSalaryList():
+    salaryList = DB.readSalaryList()
+    salTable = PrettyTable()
+    salTable.field_names = ['First Name','Last Name','ID','Position','Salary']
+    salTable.add_rows(salaryList)
+    # for info in salaryList:
+    #     salTable.add_row(info)
+
+    print(salTable)

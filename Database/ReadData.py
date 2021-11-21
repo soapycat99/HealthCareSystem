@@ -15,6 +15,20 @@ def readInfo(acc, pw):
                     return None
     return None
 
+
+def readSalaryList():
+    salaryList = []
+    with open('Database/Account/AccDB', 'r') as outfile:
+        next(outfile)
+        for line in outfile:
+            info = [x.strip() for x in line.split('|')]
+            if info[-2] != 'Patient':
+                aList = [info[0],info[1],info[-3],info[-2],info[-1]]
+                salaryList.append(aList)
+    return salaryList
+
+
+
 def getName(accID):
     with open('Database/Account/AccDB', 'r') as outfile:
         next(outfile)

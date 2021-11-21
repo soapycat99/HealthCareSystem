@@ -48,3 +48,6 @@ def readPayment(refNum=None,firstName=None,lastName=None):
 
 def addPatient(recID,opt):
     ud.addPatient(recID,opt)
+
+def readSalaryList():
+    return rd.readSalaryList()

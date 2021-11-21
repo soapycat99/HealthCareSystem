@@ -18,7 +18,7 @@ def main():
                     accID, actor = result
                     break
                 else:
-                    print('Unvailable username, please select another one')
+                    print('Unavailable username, please select another one')
         elif opt == 2:
             while True:
                 result = inf.login()
@@ -33,17 +33,19 @@ def main():
 
         obj = f'ac.{actor}({accID})'
         user = eval(obj)
+        print('??????')
+        user.readSalaryList()
 
-        while True:
-            opt = inf.showFunc(user.func)
-
-            if opt == len(user.func) - 2:
-                break
-            elif opt == len(user.func) - 1:
-                print('SYSTEM EXIT')
-                sys.exit()
-            eval(f'user.{user.actFunc[opt]}')
-            print('-'*75)
+        # while True:
+        #     opt = inf.showFunc(user.func)
+        #
+        #     if opt == len(user.func) - 2:
+        #         break
+        #     elif opt == len(user.func) - 1:
+        #         print('SYSTEM EXIT')
+        #         sys.exit()
+        #     eval(f'user.{user.actFunc[opt]}')
+        #     print('-'*75)
 
 if __name__ == "__main__":
     main()

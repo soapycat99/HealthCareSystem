@@ -1,6 +1,19 @@
 import csv
 import re
 
+def updateSalary(accid:str,newSal:int):
+    with open('Database/Account/AccDB', 'r') as out:
+        lines = out.readlines()
+        for line in lines:
+            info = [x.strip() for x in line.split('|')][:-1]
+            if str(info[-3]) == accid:
+                line = ''
+                for i in info:
+                    line += i + ' | '
+                line += f'{newSal:,}\n'
+
+
+
 def updateGeneralRecord(opt, data, recID):
     with open(f'Database/RecDir/{recID}.txt', 'r') as out:
         # try:

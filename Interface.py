@@ -81,9 +81,6 @@ def updateGeneralRecord(recID):
 def updateMeasurement(recID):
     HCS.updateMeasurement(recID)
 
-def showRecordOption():
-    HCS.showRecordOption('R2966')
-
 def readPayment():
     HCS.readPayment()
 

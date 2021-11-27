@@ -211,7 +211,7 @@ def getRecord(fn = None, ln = None, recid = None):
 
     key1 = ['First Name', 'Last Name', 'Address', 'Phone', 'Email', 'SSN', 'Insurance Name', 'RecID']
     key2 = ['Weight', 'Height', 'Blood Pressure', 'Pulse', 'Radiology', 'Pathology', 'Allergy', 'Prescription']
-
+    print('-'*35)
     for k1, i1, k2, i2 in zip(key1, info1, key2, info2):
         firstVal = f'{k1}: {i1}'
         if k2 != 'Weight':
@@ -225,7 +225,6 @@ def getRecord(fn = None, ln = None, recid = None):
 
 def checkRecord(fn = None, ln = None, recid = None):
     return getRecord(fn,ln,recid)
-    # showRecordOption(recID)
 
 def showStaffOption(recID):
     '''Show options for staff actor after checking record, and implement the selected function'''
@@ -252,7 +251,7 @@ def showDoctorOption(recID):
 def call_function(recID,actFunc:list):
     opt = 0
     l = len(actFunc)
-    print(type(actFunc),actFunc,l)
+
     while True:
         try:
             opt = int(input('Input: '))
@@ -267,32 +266,6 @@ def call_function(recID,actFunc:list):
             continue
 
     if opt != l+1:
-        checkRecord(recid=recID)
-
-def showRecordOption(recID):
-    # TODO: Delete this function after done testing
-    print('Select Option')
-    for count,key in enumerate(['Update General Record','Update Measurement',
-                                'Update Treatment',"Add into doctor's list",'X'],1):
-        print(f'{count}. {key}')
-    opt = 0
-    option = ['updateGeneralRecord','updateMeasurement','updateTreatment','addPatient']
-
-
-    while True:
-        try:
-            opt = int(input('Input: '))
-            if opt >= 1 and opt <=4:
-                globals()[option[opt-1]](recID)
-                break
-            elif opt == 5:
-                break
-            print('Invalid, try again')
-        except ValueError:
-            print('Invalid, try again')
-            continue
-
-    if opt != 5:
         checkRecord(recid=recID)
 
 def checkInvoice(accID):
@@ -321,12 +294,11 @@ def payingAlert(num):
 
     if opt == 'Y':
         while order not in range(1,num):
-            order = input('Choose invoice you would like to pay: ')
-            if int(order) not in range(num):
+            order = int(input('Choose invoice you would like to pay: '))
+            if order not in range(num):
                 print(f'You must choose a number from 1 to {num-1}, try again')
-            else:
-                order = int(order)-1
-    return order
+
+    return order-1
 
 def readPayment():
     opt = 0
@@ -352,8 +324,10 @@ def readPayment():
 
     if info != None:
         key = ['Reference Number','First Name','Last Name','Amount','Date','Time']
-        for k,i in zip(key,info):
-            print(f'{k:>16}: {i:}')
+        for payment in info:
+            print('-'*30)
+            for k,p in zip(key,payment):
+                print(f'{k:>16}: {p:}')
     else:
         print('Wrong input!')
 

@@ -34,7 +34,6 @@ class Patient():
         inf.checkInvoice(self.accID)
 
 
-
 class Staff():
     def __init__(self, accID):
         self.accID = accID
@@ -75,11 +74,6 @@ class Doctor():
         inf.checkRecord(actor=actor)
 
 
-
-
-
-
-
 class Nurse():
     def __init__(self, accID):
         self.accID = accID
@@ -97,9 +91,18 @@ class Nurse():
 class CEO():
     def __init__(self, accID):
         self.accID = accID
+        self.func = ['Read Payment Information', 'Check Record','Check Salary Lít','Update Salary', 'Log Out', 'Quit']
+        self.actFunc = ['readPayment()', 'checkRecord()','readSalaryList()','updateSalary()']
 
     def readSalaryList(self):
         inf.readSalaryList()
 
     def updateSalary(self):
         inf.updateSalary()
+
+    def readPayment(self):
+        inf.readPayment()
+
+    def checkRecord(self):
+        actor = self.__class__.__name__
+        inf.checkRecord(actor=actor)

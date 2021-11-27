@@ -109,6 +109,7 @@ def readInvoice(accID):
     return None
 
 def readPayment(refNum,firstName,lastName):
+    info = []
     if refNum == None:
         with open('Database/PaymentInfo.csv', 'r') as f:
             csvreader = csv.reader(f)
@@ -116,9 +117,7 @@ def readPayment(refNum,firstName,lastName):
             for line in csvreader:
                 if firstName == line[1]:
                     if lastName == line[2]:
-                        return line
-            return None
-
+                        info.append(line)
     else:
         with open('Database/PaymentInfo.csv', 'r') as f:
             csvreader = csv.reader(f)
@@ -126,8 +125,12 @@ def readPayment(refNum,firstName,lastName):
             for line in csvreader:
                 if refNum == line[0]:
                     print(line)
-                    return line
-            return None
+                    info.append(line)
+
+    if len(info) > 0:
+        return info
+    return None
+
 def getDailyList(accID):
 
     with open(f'Database/DailyList', 'r') as out:

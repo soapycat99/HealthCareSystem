@@ -6,7 +6,6 @@ def updateSalary(accid:str,newSal:str):
         lines = out.readlines()
         for count, line in enumerate(lines):
             info = [x.strip() for x in line.split('|')][:-1]
-            print(info[-2],accid,info[-2]==accid)
             if str(info[-2]) == accid:
                 lines[count] = ''
                 for i in info:

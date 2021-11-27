@@ -75,7 +75,7 @@ def createPayment(payInfo):
     refNum = '000' + str(lineNum)
     payInfo.insert(0,refNum)
 
-    with open('Database/PaymentInfo.csv','a', newline='\n') as f:
+    with open('Database/PaymentInfo.csv','a+', newline='') as f:
         writer = csv.writer(f)
         writer.writerow(payInfo)
 

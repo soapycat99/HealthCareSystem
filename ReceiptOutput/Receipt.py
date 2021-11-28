@@ -10,6 +10,7 @@ class Receipt():
         self.amount = amount
         self.des = des
 
+    @classmethod
     def get_time(self):
         t = time.localtime()
         current_time = time.strftime('%I:%M:%S%p', t)
@@ -41,13 +42,12 @@ class Receipt():
 
         content = content + '| ' + '-' * (length - 4) + ' |\n'
 
-        amount = '$100'
-        des = 'PTSD'
+        amount = self.amount
+        des = self.des
 
-        length0 = length - len(des) - len(amount) - 2
+        length0 = length - len(des) - len(amount) - 3
 
         content = content + f'|  {des} {amount:>{length0}} |\n'
 
         return content,current_time,today
-
 

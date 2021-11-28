@@ -26,7 +26,7 @@ def updateGeneralRecord(opt, data, recID):
         lines = out.readlines()
         line = lines[opt].split(':')
         lines[opt] = f'{line[0]}: {data}\n'
-        print(lines)
+
 
     with open(f'Database/RecDir/{recID}.txt', 'w') as inp:
         inp.writelines(lines)
@@ -42,7 +42,6 @@ def updateMeasurement(pos, data, recID):
         lines = out.readlines()
         line = lines[pos].split(':')
         lines[pos] = f'{line[0]}: {data}\n'
-        print(lines)
 
     with open(f'Database/RecDir/{recID}.txt', 'w') as inp:
         inp.writelines(lines)

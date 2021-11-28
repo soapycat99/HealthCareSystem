@@ -120,7 +120,7 @@ def checkAppointment(lastName = None, phoneNumber = None):
     if lastName == None:
         lastName = input('Last name: ')
         phoneNumber = input('Phone number: ')
-
+    print('-'*30)
     info = DB.checkAppointment(lastName, phoneNumber)
     if info != None:
         key = ['AppID', 'First Name', 'Last Name', 'Phone Number', 'Doctor', 'Date','Time']
@@ -189,7 +189,7 @@ def cardPayment(receipt,accID):
 
     DB.storePayment(payInfo)
 
-    # TODO: delete invoice paid
+
 
 def createRecord():
     record = []
@@ -297,8 +297,9 @@ def payingAlert(num):
             order = int(input('Choose invoice you would like to pay: '))
             if order not in range(num):
                 print(f'You must choose a number from 1 to {num-1}, try again')
+        return order - 1
 
-    return order-1
+    return None
 
 def readPayment():
     opt = 0
@@ -346,7 +347,6 @@ def addPatient(recID):
 
 
 def updateGeneralRecord(recID):
-    print('this is updating general record')
     category = ['First Name', 'Last Name', 'Address', 'Phone Number','Email','SSN','Insurance Name']
     print('Choose category to be updated:')
     opt = 0

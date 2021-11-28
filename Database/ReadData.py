@@ -1,5 +1,3 @@
-# import Account.Account as ac
-#3,4
 import os
 import csv
 
@@ -27,8 +25,6 @@ def readSalaryList():
                 salaryList.append(aList)
     return salaryList
 
-
-
 def getName(accID):
     with open('Database/Account/AccDB', 'r') as outfile:
         next(outfile)
@@ -39,7 +35,6 @@ def getName(accID):
     return None
 
 def readAppointment(lastName, phoneNumber):
-    print(lastName,phoneNumber)
     with open('Database/App.csv', 'r') as f:
         csvreader = csv.reader(f)
         next(csvreader)
@@ -124,7 +119,6 @@ def readPayment(refNum,firstName,lastName):
             next(csvreader)
             for line in csvreader:
                 if refNum == line[0]:
-                    print(line)
                     info.append(line)
 
     if len(info) > 0:

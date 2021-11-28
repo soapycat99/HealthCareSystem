@@ -1,5 +1,4 @@
 import Interface as inf
-import HCS
 import Database.ReadData as rd
 import Database.DBControl as DB
 
@@ -15,6 +14,7 @@ class Patient():
             self.recordID = None
         self.func = ['Make Appointment','Check Appointment','Check Record','Check Invoice','Log Out','Quit']
         self.actFunc = ['makeAppointment()','checkAppointment()','checkRecord()','checkInvoice()']
+
 
 
     def makeAppointment(self):

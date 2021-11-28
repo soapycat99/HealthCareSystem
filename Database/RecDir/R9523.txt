@@ -4,7 +4,7 @@ Address: 408 Elm Street
 Phone Number: 4728123947
 Email: thyngu123@gmail.com
 SSN: 9876552412
-Insurance Name: Viet Phat
+Insurance Name: Alfa
 Record ID: R9523
 ------------------------------
 Weight: N/A
@@ -13,7 +13,7 @@ Blood Pressure: N/A
 Pulse: N/A
 ------------------------------
 Radiology: N/A
-Pathology: N/A
+Pathology: 75
 Allergy: N/A
 Prescription: N/A
 Summary: N/A

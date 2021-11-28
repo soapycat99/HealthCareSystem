@@ -9,7 +9,7 @@ Record ID: R7437
 ------------------------------
 Weight: 65
 Height: N/A
-Blood Pressure: N/A
+Blood Pressure: 150
 Pulse: N/A
 ------------------------------
 Radiology: N/A
